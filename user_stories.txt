@@ -1,0 +1,15 @@
+1. Jako użytkownik - twórca list:
+
+1.1 chce mieć możliwość dodawania produktów do listy wraz z sprecyzowaniem ilości każdego z produktów (6H)
+1.2 chce wyświetlić listę produktów, które dodałem/dodałam. (4H)
+1.3 chce mieć możliwość posiadania kilku różnych list (8H)
+1.4 chce móc przypisać użytkowników do listy wraz z nadaniem im roli: kupujący/uzupełniający listę (16H)
+1.5 chce zadeklarować kategorię dodanego produktu do listy (5H)
+1.6 chce móc dowolnie zmieniać kolejność produktów na liście (6H)
+1.7 chce widzieć kto z kupujących kupił daną rzecz (4H)
+
+2. Jako użytkownik - kupujący:
+
+2.1 chce móc oznaczyć produkt jako kupiony. (4H)
+2.2 chce móc przeglądać produkty na liście. (4H)
+2.3 chce móc wpisać cenę produktu po jego zakupieniu (4H)
