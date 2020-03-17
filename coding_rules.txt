@@ -1,0 +1,7 @@
+- Standardowe formatowanie InteliJ - Klamry otwierane w tej samej lini, wcięcia tabulatorem
+- Wszystkie zmienne, nazwy klas i metod w języku angielskim
+- Zmienne i metody - camelCase, enumy, klasy i inne - PascalCase
+- Osobny plik na każdą klasę
+
+FORMATOWANIE ZGODNE Z:
+https://www.oracle.com/technetwork/java/codeconventions-150003.pdf
