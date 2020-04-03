@@ -10,7 +10,7 @@ public class CalculatorTests {
     private static Stream<Arguments> upToTwoNumbers() {
         return Stream.of(
                 Arguments.of("", 0),
-                Arguments.of("1", 1),
+                Arguments.of("2", 2),
                 Arguments.of("1,2", 3)
         );
     }
