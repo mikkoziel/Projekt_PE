@@ -1,54 +1,30 @@
-import java.awt.*;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class Calculator {
 
-    public int add(String numbers) {
-        if (numbers.length() == 0) {
-            return 0;
+    String delimiterRegex = "[,\n]";
+
+    int add(String numbers) {
+        if (numbers.equals("")) return 0;
+
+        if (numbers.matches("//.\n.+")) {
+            delimiterRegex = numbers.substring(2, 3);
+            numbers = numbers.substring(4);
         }
 
-        var numbersToSplit = numbers;
-        String delimiters = "[";
-        if (numbers.length() > 2) {
-            if (numbers.substring(0, 2).equals("//")) {
-                var splitOnNewLineDelimiter = numbers.split("\n", 2);
-                var customDelimiter = splitOnNewLineDelimiter[0].replace("//", "");
-                delimiters += customDelimiter + ",";
-                numbersToSplit = splitOnNewLineDelimiter[1];
-            }
-        }
-        delimiters = delimiters + ",\\n]+";
+        final String[] splitedNumbers = numbers.split(delimiterRegex);
 
-        var splitNumbers = numbersToSplit.split(delimiters);
+        Supplier<Stream<Integer>> streamSupplier = () -> Arrays.stream(splitedNumbers).map(Integer::parseInt);
 
-        if (splitNumbers[0].length() == 0) {
-            return 0;
+        Integer[] negativeIntegers = streamSupplier.get().filter(integer -> integer < 0).toArray(Integer[]::new);
+        if (negativeIntegers.length > 0) {
+            throw new IllegalArgumentException("Negatives not allowed: " + Arrays.toString(negativeIntegers));
         }
 
-        int[] intArray = Arrays.stream(splitNumbers).mapToInt(Integer::parseInt).toArray();
-
-        String negativeValues = "";
-        for (Integer value: intArray) {
-            if (value < 0) {
-                negativeValues += value.toString() + ",";
-            }
-        }
-
-        if (!negativeValues.equals("")) {
-            try {
-                var messageString = "Negatives not allowed: " + negativeValues.substring(0, negativeValues.length() - 1);
-                System.out.print(messageString);
-                throw new Exception(messageString);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-            int sum = IntStream.of(intArray).sum();
-            return sum;
+        return streamSupplier.get()
+                .reduce(Integer::sum)
+                .orElseThrow();
     }
-
 }

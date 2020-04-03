@@ -17,13 +17,13 @@ public class CalculatorTests {
 
     @ParameterizedTest
     @MethodSource("upToTwoNumbers")
-    void Add_AddUpToTwoNumbers_WhenStringIsValid(String input, Integer expected) {
+    void add_AddUpToTwoNumbers_WhenStringIsValid(String input, int expected) {
 
         var sut = new Calculator();
 
         var result = sut.add(input);
 
-        Assert.assertTrue(expected == result);
+        Assert.assertEquals(expected, result);
     }
 
     private static Stream<Arguments> upToAnyNumbers() {
@@ -37,13 +37,13 @@ public class CalculatorTests {
 
     @ParameterizedTest
     @MethodSource("upToAnyNumbers")
-    void Add_AddUpToAnyNumbers_WhenStringIsValid(String input, Integer expected) {
+    void add_AddUpToAnyNumbers_WhenStringIsValid(String input, int expected) {
 
         var sut = new Calculator();
 
         var result = sut.add(input);
 
-        Assert.assertTrue(expected == result);
+        Assert.assertEquals(expected, result);
     }
 
     private static Stream<Arguments> lineDelimiter() {
@@ -57,13 +57,13 @@ public class CalculatorTests {
 
     @ParameterizedTest
     @MethodSource("lineDelimiter")
-    void Add_AddUpToAnyNumbers_WithLineDelimiter(String input, Integer expected) {
+    void add_AddUpToAnyNumbers_WithLineDelimiter(String input, int expected) {
 
         var sut = new Calculator();
 
         var result = sut.add(input);
 
-        Assert.assertTrue(expected == result);
+        Assert.assertEquals(expected, result);
     }
 
     private static Stream<Arguments> lineCustomDelimiter() {
@@ -75,31 +75,31 @@ public class CalculatorTests {
 
     @ParameterizedTest
     @MethodSource("lineCustomDelimiter")
-    void Add_AddUpToAnyNumbers_WithCustomLineDelimiter(String input, Integer expected) {
+    void add_AddUpToAnyNumbers_WithCustomLineDelimiter(String input, int expected) {
 
         var sut = new Calculator();
 
         var result = sut.add(input);
 
-        Assert.assertTrue(expected == result);
+        Assert.assertEquals(expected, result);
     }
 
     private static Stream<Arguments> exceptionNegatives() {
         return Stream.of(
-                Arguments.of("1,-2,1", "-2"),
-                Arguments.of("//;\n3;-4;-5", "-4,-5")
+                Arguments.of("1,-2,1", "[-2]"),
+                Arguments.of("//;\n3;-4;-5", "[-4, -5]")
         );
     }
 
     @ParameterizedTest
     @MethodSource("exceptionNegatives")
-    void Add_ShouldThrowException_WhenNegativesAreUsed(String input, String expected) {
+    void add_ShouldThrowException_WhenNegativesAreUsed(String input, String expected) {
 
         var sut = new Calculator();
         try {
             var result = sut.add(input);
         } catch (Exception e) {
-            Assert.assertTrue(e.getMessage().equals("Negatives not allowed: " + expected));
+            Assert.assertEquals("Negatives not allowed: " + expected, e.getMessage());
         }
     }
 }
