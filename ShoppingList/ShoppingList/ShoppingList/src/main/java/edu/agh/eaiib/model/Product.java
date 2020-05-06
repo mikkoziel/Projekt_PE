@@ -45,4 +45,12 @@ public class Product {
         result = 31 * result + amount;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
 }
