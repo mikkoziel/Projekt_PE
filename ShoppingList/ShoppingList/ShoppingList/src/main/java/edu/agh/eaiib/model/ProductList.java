@@ -5,10 +5,7 @@ import java.util.List;
 public class ProductList {
     private String name;
     private String username;
-    private List<Product> products;
-
-    public ProductList() {
-    }
+    private final List<Product> products;
 
     public ProductList(String name, String username, List<Product> products) {
         this.name = name;
@@ -20,24 +17,12 @@ public class ProductList {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public List<Product> getProducts() {
         return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     @Override

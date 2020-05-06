@@ -1,11 +1,8 @@
 package edu.agh.eaiib.model;
 
 public class Product {
-    String name;
-    int amount;
-
-    public Product() {
-    }
+    private String name;
+    private int amount;
 
     public Product(String name, int amount) {
         this.name = name;
@@ -16,16 +13,8 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getAmount() {
         return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
     }
 
     @Override
