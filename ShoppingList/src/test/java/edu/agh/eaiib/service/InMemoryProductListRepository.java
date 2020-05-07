@@ -1,4 +1,4 @@
-package edu.agh.eaiib.repository;
+package edu.agh.eaiib.service;
 
 import edu.agh.eaiib.model.ProductList;
 import edu.agh.eaiib.repository.ProductListRepository;
