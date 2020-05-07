@@ -1,7 +1,12 @@
 package edu.agh.eaiib;
 
+import edu.agh.eaiib.service.ProductListService;
+
 public class CommandParser {
-    public static void parse(String input) {
+
+    private ProductListService service = ProductListService.getInstance();
+
+    public void parse(String input) {
         if (input.isEmpty() || input.equals("help")) {
             System.out.println("Available commands:");
             System.out.println("login - changes the current user creating lists");
