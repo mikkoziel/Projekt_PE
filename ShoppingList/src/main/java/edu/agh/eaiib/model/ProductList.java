@@ -54,6 +54,7 @@ public class ProductList extends ArrayList<Product> {
     public String toString() {
         return "ProductList{" +
                 "name='" + name + '\'' +
+                ", products=" + super.toString() +
                 '}';
     }
 }
