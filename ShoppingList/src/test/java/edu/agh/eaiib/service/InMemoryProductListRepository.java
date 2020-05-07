@@ -5,7 +5,7 @@ import edu.agh.eaiib.repository.ProductListRepository;
 
 public class InMemoryProductListRepository implements ProductListRepository {
 
-    ProductList productList = new ProductList("List", "Creator");
+    ProductList productList = new ProductList();
 
     @Override
     public void save(ProductList productList) {

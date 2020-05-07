@@ -10,6 +10,10 @@ public class ProductList extends ArrayList<Product> {
     private String creatorName;
     private List<String> usersNames = new ArrayList<>();
 
+    public ProductList() {
+
+    }
+
     public ProductList(String name, String creatorName) {
         this.name = name;
         this.creatorName = creatorName;
