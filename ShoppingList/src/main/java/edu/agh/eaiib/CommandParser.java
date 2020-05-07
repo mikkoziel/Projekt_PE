@@ -7,6 +7,11 @@ import edu.agh.eaiib.service.ProductListService;
 public class CommandParser {
 
     static ProductListService service = new ProductListService(new GsonProductListRepository("database.json"));
+    String username = new String();
+
+    public CommandParser(String username) {
+        this.username = username;
+    }
 
     public void parse(String input) {
         if (input.isEmpty() || input.equals("help")) {
@@ -16,11 +21,12 @@ public class CommandParser {
             System.out.println("create <listName> - creates a list with the specified name and the user as the creator of the list");
             System.out.println("buy <productName> in <listName> - marks the product as bought");
         } else if (input.matches("login [A-Za-z0-9]+")) {
-
+            this.username = input.split(" ")[1];
+            System.out.println(String.format("New user logged in: %s", this.username));
         } else if (input.matches("add [0-9]+ [A-Za-z0-9]+")) {
             parseAdd(input);
         } else if (input.matches("create [A-Za-z0-9]+")) {
-
+          
         } else if (input.matches("buy [A-Za-z0-9]+ in [A-Za-z0-9]+")) {
 
         }
