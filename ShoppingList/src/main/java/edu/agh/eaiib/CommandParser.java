@@ -1,13 +1,18 @@
 package edu.agh.eaiib;
 
 import edu.agh.eaiib.model.Product;
+import edu.agh.eaiib.model.ProductList;
 import edu.agh.eaiib.repository.GsonProductListRepository;
 import edu.agh.eaiib.service.ProductListService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandParser {
 
     static ProductListService service = new ProductListService(new GsonProductListRepository("database.json"));
     String username = new String();
+    List<ProductList> lists = new ArrayList<ProductList>();
 
     public CommandParser(String username) {
         this.username = username;
@@ -23,6 +28,7 @@ public class CommandParser {
         } else if (input.matches("login [A-Za-z0-9]+")) {
             this.username = input.split(" ")[1];
             System.out.println(String.format("New user logged in: %s", this.username));
+            printListLists();
         } else if (input.matches("add [0-9]+ [A-Za-z0-9]+")) {
             parseAdd(input);
         } else if (input.matches("create [A-Za-z0-9]+")) {
@@ -38,5 +44,10 @@ public class CommandParser {
         String productName = input.replaceFirst("add [0-9]+ ", "");
         Product product = new Product(productName, amount);
         service.addProduct(product);
+    }
+
+    private void printListLists(){
+
+        return;
     }
 }
