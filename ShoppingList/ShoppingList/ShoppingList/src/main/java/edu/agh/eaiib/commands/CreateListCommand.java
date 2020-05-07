@@ -1,19 +1,24 @@
 package edu.agh.eaiib.commands;
 
 import edu.agh.eaiib.model.ProductList;
+import edu.agh.eaiib.service.ProductListService;
 
-public class CreateListCommand extends Command{
+public class CreateListCommand implements Command{
 
     private String listName;
+    private ProductListService productListService;
 
-    public CreateListCommand(String listName){
-        super();
-        this.listName = listName;
+    public CreateListCommand(ProductListService productListService){
+        this.productListService = productListService;
     }
 
     @Override
     public void Execute(String username) {
         ProductList newList = new ProductList(this.listName, username);
-        productListRepository.save(newList);
+        productListService.createList(newList);
+    }
+
+    public void setListName(String listName) {
+        this.listName = listName;
     }
 }

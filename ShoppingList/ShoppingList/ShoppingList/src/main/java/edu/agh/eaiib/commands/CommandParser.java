@@ -1,7 +1,17 @@
 package edu.agh.eaiib.commands;
 
+import edu.agh.eaiib.repository.ProductListRepository;
+import edu.agh.eaiib.service.ProductListService;
+
 public class CommandParser {
-    public static Command parse(String input) {
+
+    private ProductListService productListService;
+
+    public CommandParser(ProductListRepository productListRepository){
+        this.productListService = new ProductListService(productListRepository);
+    }
+
+    public Command parse(String input) {
         if (input.isEmpty() || input.equals("help")) {
             System.out.println("Available commands:");
             System.out.println("login - changes the current user creating lists");
@@ -15,7 +25,9 @@ public class CommandParser {
             } else if (input.matches("add [A-Za-z1-9]+ to [A-Za-z1-9]+")) {
 
             } else if (input.matches("create [A-Za-z1-9]+")) {
-                return new CreateListCommand(parts[1]);
+                CreateListCommand cmd = new CreateListCommand(this.productListService);
+                cmd.setListName(parts[1]);
+                return cmd;
             } else if (input.matches("buy [A-Za-z1-9]+ in [A-Za-z1-9]+")) {
 
             }

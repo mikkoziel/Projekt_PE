@@ -24,6 +24,14 @@ public class ProductList {
         this.usersNames = users;
     }
 
+    public void addProduct(Product product){
+        this.products.add(product);
+    }
+
+    public void addUser(String name){
+        this.usersNames.add(name);
+    }
+
     public String getName() {
         return name;
     }
