@@ -1,4 +1,6 @@
 package edu.agh.eaiib;
+import edu.agh.eaiib.commands.CommandParser;
+
 import java.util.Scanner;
 
 /**
@@ -14,7 +16,7 @@ public class App {
         System.out.println(String.format("%s, welcome to lists.", username));
         while (true) {
             String input = scanner.nextLine();
-            CommandParser.parse(input);
+            CommandParser.parse(input).Execute(username);
         }
     }
 }
