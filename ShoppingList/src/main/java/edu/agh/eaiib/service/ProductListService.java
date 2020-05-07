@@ -1,7 +1,7 @@
 package edu.agh.eaiib.service;
 
 import edu.agh.eaiib.model.ProductList;
-import edu.agh.eaiib.repository.GsonProductListRepository;
+import edu.agh.eaiib.repository.InMemoryProductListRepository;
 import edu.agh.eaiib.repository.ProductListRepository;
 
 public class ProductListService {
@@ -14,7 +14,7 @@ public class ProductListService {
     }
 
     private ProductListService() {
-        this.productListRepository = new GsonProductListRepository("database.json");
+        this.productListRepository = new InMemoryProductListRepository();
     }
 
     public ProductList addProduct() {
