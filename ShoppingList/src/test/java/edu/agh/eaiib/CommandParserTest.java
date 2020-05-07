@@ -6,9 +6,9 @@ import edu.agh.eaiib.service.ProductListService;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Collections.singletonList;
 import static org.junit.Assert.assertEquals;
 
 public class CommandParserTest {
@@ -26,7 +26,16 @@ public class CommandParserTest {
     @Test
     public void testAddProduct() {
         testObject.parse("add 3 apple");
-        List<Product> expected = singletonList(new Product("apple", 3));
+        List<Product> expected = new ArrayList<>();
+        expected.add(new Product("apple", 3));
+        assertEquals(expected, service.getList());
+
+        testObject.parse("add 4 apple");
+        expected.add(new Product("apple", 4));
+        assertEquals(expected, service.getList());
+
+        testObject.parse("add 10 egg");
+        expected.add(new Product("egg", 10));
         assertEquals(expected, service.getList());
     }
 }
