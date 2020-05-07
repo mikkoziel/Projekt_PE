@@ -1,10 +1,16 @@
 package edu.agh.eaiib.repository;
 
 import edu.agh.eaiib.model.ProductList;
+import edu.agh.eaiib.model.User;
+
+import java.util.ArrayList;
 
 public interface ProductListRepository {
-    void save(ProductList productList);
+    void save(ArrayList<User> users);
 
     ProductList read();
+    ArrayList<ProductList> readListsForUser(User user);
 
+    User readUser(User user);
+    void saveUser(User user);
 }

@@ -2,7 +2,10 @@ package edu.agh.eaiib.service;
 
 import edu.agh.eaiib.model.Product;
 import edu.agh.eaiib.model.ProductList;
+import edu.agh.eaiib.model.User;
 import edu.agh.eaiib.repository.ProductListRepository;
+
+import java.util.ArrayList;
 
 public class ProductListService {
 
@@ -16,9 +19,16 @@ public class ProductListService {
         return repository.read();
     }
 
-    public void addProduct(Product product) {
-        ProductList productList = repository.read();
-        productList.add(product);
-        repository.save(productList);
+    public ArrayList<ProductList> getLists(User user) {
+        return repository.readListsForUser(user);
+    }
+
+    public void addProduct(Product product, ProductList list, User user) {
+        user.addProductToList(product, list);
+        repository.saveUser(user);
+    }
+
+    public void saveUser(User user){
+        repository.saveUser(user);
     }
 }

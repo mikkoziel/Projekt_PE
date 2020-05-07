@@ -18,7 +18,7 @@ public class CommandParserTest {
 
     @Before
     public void setUp() {
-        testObject = new CommandParser("aaa");
+        testObject = new CommandParser("aa");
         service = new ProductListService(new InMemoryProductListRepository());
         CommandParser.service = service;
     }

@@ -2,6 +2,7 @@ package edu.agh.eaiib;
 
 import edu.agh.eaiib.model.Product;
 import edu.agh.eaiib.model.ProductList;
+import edu.agh.eaiib.model.User;
 import edu.agh.eaiib.repository.GsonProductListRepository;
 import edu.agh.eaiib.service.ProductListService;
 
@@ -11,11 +12,10 @@ import java.util.List;
 public class CommandParser {
 
     static ProductListService service = new ProductListService(new GsonProductListRepository("database.json"));
-    String username = new String();
-    List<ProductList> lists = new ArrayList<ProductList>();
+    User user;
 
     public CommandParser(String username) {
-        this.username = username;
+        this.user = new User(username);
     }
 
     public void parse(String input) {
@@ -26,13 +26,13 @@ public class CommandParser {
             System.out.println("create <listName> - creates a list with the specified name and the user as the creator of the list");
             System.out.println("buy <productName> in <listName> - marks the product as bought");
         } else if (input.matches("login [A-Za-z0-9]+")) {
-            this.username = input.split(" ")[1];
-            System.out.println(String.format("New user logged in: %s", this.username));
-            printListLists();
+            String username = input.split(" ")[1];
+            this.user = new User(username);
+            System.out.println(String.format("New user logged in: %s", this.user.getUsername()));
         } else if (input.matches("add [0-9]+ [A-Za-z0-9]+")) {
             parseAdd(input);
         } else if (input.matches("create [A-Za-z0-9]+")) {
-          
+            parseCreate(input);
         } else if (input.matches("buy [A-Za-z0-9]+ in [A-Za-z0-9]+")) {
 
         }
@@ -43,11 +43,21 @@ public class CommandParser {
                 .replaceFirst(" [A-Za-z0-9]+", ""));
         String productName = input.replaceFirst("add [0-9]+ ", "");
         Product product = new Product(productName, amount);
-        service.addProduct(product);
+        String listName = input.replaceFirst("[A-Za-z0-9]+ to ", "");
+        ProductList list = user.findList(listName);
+        if (list == null){
+            System.out.println("List of that name doesn't exist.\n" +
+                    " First you must create list with that name.");
+            return;
+        }
+        service.addProduct(product, list, user);
     }
 
-    private void printListLists(){
-
-        return;
+    private void parseCreate(String input) {
+        String listName = input.replaceFirst("create ", "");
+        ProductList list = new ProductList(listName, user.getUsername());
+        user.addProductList(list);
+        service.saveUser(user);
     }
+
 }
