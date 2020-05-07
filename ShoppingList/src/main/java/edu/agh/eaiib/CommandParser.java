@@ -13,6 +13,7 @@ public class CommandParser {
             System.out.println("add <number> <productName> to <listName> - adds a product to the list, if the list doesn't exist, the system makes it with the specified entry");
             System.out.println("create <listName> - creates a list with the specified name and the user as the creator of the list");
             System.out.println("buy <productName> in <listName> - marks the product as bought");
+            System.out.println("show <productName> - shows list of client's products");
         } else {
             if (input.matches("login [A-Za-z0-9]+")) {
 
@@ -22,6 +23,8 @@ public class CommandParser {
 
             } else if (input.matches("buy [A-Za-z0-9]+ in [A-Za-z0-9]+")) {
 
+            } else if (input.matches("show [A-Za-z0-9]")) {
+                service.showProductList();
             }
         }
     }

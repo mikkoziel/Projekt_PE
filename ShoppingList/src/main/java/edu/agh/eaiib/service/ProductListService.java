@@ -20,4 +20,9 @@ public class ProductListService {
     public ProductList addProduct() {
         return null;
     }
+
+    public ProductList showProductList() {
+        System.out.println(this.productListRepository.read());
+        return null;
+    }
 }
