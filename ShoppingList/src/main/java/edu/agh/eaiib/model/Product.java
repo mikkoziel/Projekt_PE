@@ -1,5 +1,7 @@
 package edu.agh.eaiib.model;
 
+import java.util.Objects;
+
 public class Product {
     private String name;
     private int amount;
@@ -21,18 +23,13 @@ public class Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Product product = (Product) o;
-
-        if (amount != product.amount) return false;
-        return name != null ? name.equals(product.name) : product.name == null;
+        return Objects.equals(name, product.name);
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + amount;
-        return result;
+        return Objects.hash(name);
     }
 
     @Override
