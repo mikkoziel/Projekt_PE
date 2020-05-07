@@ -1,18 +1,20 @@
 package edu.agh.eaiib.service;
 
+import edu.agh.eaiib.model.Product;
 import edu.agh.eaiib.model.ProductList;
-import edu.agh.eaiib.repository.GsonProductListRepository;
 import edu.agh.eaiib.repository.ProductListRepository;
 
 public class ProductListService {
 
-    private ProductListRepository productListRepository;
+    private final ProductListRepository repository;
 
-    public ProductListService(ProductListRepository productListRepository) {
-        this.productListRepository = productListRepository;
+    public ProductListService(ProductListRepository repository) {
+        this.repository = repository;
     }
 
-    public ProductList addProduct() {
-        return null;
+    public void addProduct(Product product) {
+        ProductList productList = repository.read();
+        productList.add(product);
+        repository.save(productList);
     }
 }
