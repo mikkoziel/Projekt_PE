@@ -6,15 +6,10 @@ import edu.agh.eaiib.repository.ProductListRepository;
 
 public class ProductListService {
 
-    private static final ProductListService instance = new ProductListService();
     private ProductListRepository productListRepository;
 
-    public static ProductListService getInstance() {
-        return instance;
-    }
-
-    private ProductListService() {
-        this.productListRepository = new GsonProductListRepository("database.json");
+    public ProductListService(ProductListRepository productListRepository) {
+        this.productListRepository = productListRepository;
     }
 
     public ProductList addProduct() {

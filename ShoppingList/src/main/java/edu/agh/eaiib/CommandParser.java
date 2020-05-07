@@ -1,10 +1,11 @@
 package edu.agh.eaiib;
 
+import edu.agh.eaiib.repository.GsonProductListRepository;
 import edu.agh.eaiib.service.ProductListService;
 
 public class CommandParser {
 
-    ProductListService service = ProductListService.getInstance();
+    static ProductListService service = new ProductListService(new GsonProductListRepository("database.json"));
 
     public void parse(String input) {
         if (input.isEmpty() || input.equals("help")) {
