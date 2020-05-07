@@ -21,7 +21,8 @@ public class CommandParser {
             System.out.println("buy <productName> in <listName> - marks the product as bought");
         } else {
             if (input.matches("login [A-Za-z0-9]+")) {
-
+                this.username = input.split(" ")[1];
+                System.out.println(String.format("New user logged in: %s", this.username));
             } else if (input.matches("add [0-9]+ [A-Za-z0-9]+ to [A-Za-z0-9]+")) {
 
             } else if (input.matches("create [A-Za-z0-9]+")) {
