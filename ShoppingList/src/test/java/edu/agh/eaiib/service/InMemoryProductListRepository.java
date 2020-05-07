@@ -4,7 +4,8 @@ import edu.agh.eaiib.model.ProductList;
 import edu.agh.eaiib.repository.ProductListRepository;
 
 public class InMemoryProductListRepository implements ProductListRepository {
-    ProductList productList;
+
+    ProductList productList = new ProductList("List", "Creator");
 
     @Override
     public void save(ProductList productList) {

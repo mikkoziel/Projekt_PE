@@ -1,5 +1,6 @@
 package edu.agh.eaiib;
 
+import edu.agh.eaiib.model.Product;
 import edu.agh.eaiib.repository.GsonProductListRepository;
 import edu.agh.eaiib.service.ProductListService;
 
@@ -17,13 +18,21 @@ public class CommandParser {
         } else {
             if (input.matches("login [A-Za-z0-9]+")) {
 
-            } else if (input.matches("add [0-9]+ [A-Za-z0-9]+ to [A-Za-z0-9]+")) {
-
+            } else if (input.matches("add [0-9]+ [A-Za-z0-9]+")) {
+                parseAdd(input);
             } else if (input.matches("create [A-Za-z0-9]+")) {
 
             } else if (input.matches("buy [A-Za-z0-9]+ in [A-Za-z0-9]+")) {
 
             }
         }
+    }
+
+    private void parseAdd(String input) {
+        int amount = Integer.parseInt(input.replaceFirst("add ", "")
+                .replaceFirst(" [A-Za-z0-9]+", ""));
+        String productName = input.replaceFirst("add [0-9]+ ", "");
+        Product product = new Product(productName, amount);
+        service.addProduct(product);
     }
 }
