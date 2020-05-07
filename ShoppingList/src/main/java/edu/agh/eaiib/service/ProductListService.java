@@ -31,4 +31,8 @@ public class ProductListService {
     public void saveUser(User user){
         repository.saveUser(user);
     }
+
+    public User readUser(String username){
+        return repository.readUser(username);
+    }
 }

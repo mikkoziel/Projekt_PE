@@ -6,6 +6,7 @@ import edu.agh.eaiib.model.ProductList;
 import edu.agh.eaiib.model.User;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class GsonProductListRepository implements ProductListRepository {
@@ -20,7 +21,8 @@ public class GsonProductListRepository implements ProductListRepository {
     @Override
     public void save(ArrayList<User> users) {
         try (FileWriter writer = new FileWriter(productsFileName)) {
-            gson.toJson(users, writer);
+            Type listOfUsers = new TypeToken<ArrayList<User>>(){}.getType();
+            gson.toJson(users, listOfUsers, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,12 +53,17 @@ public class GsonProductListRepository implements ProductListRepository {
 
     public void saveUser(User user){
         ArrayList<User> users = readLists();
-        for(User u: users){
-            if(u.getUsername().equals(user.getUsername())){
-                int index = users.indexOf(u);
-                users.set(index, user);
-                break;
+        if(users != null){
+            for(User u: users){
+                if(u.getUsername().equals(user.getUsername())){
+                    int index = users.indexOf(u);
+                    users.set(index, user);
+                    break;
+                }
             }
+        }else{
+            users = new ArrayList<User>();
+            users.add(user);
         }
         save(users);
     }
@@ -72,10 +79,10 @@ public class GsonProductListRepository implements ProductListRepository {
 
     }
 
-    public User readUser(User user){
+    public User readUser(String username){
         ArrayList<User> users = readLists();
         for(User u: users){
-            if(u.getUsername().equals(user.getUsername())){
+            if(u.getUsername().equals(username)){
                 return u;
             }
         }

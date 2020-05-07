@@ -11,11 +11,11 @@ import java.util.List;
 
 public class CommandParser {
 
-    static ProductListService service = new ProductListService(new GsonProductListRepository("database.json"));
+    static ProductListService service = new ProductListService(new GsonProductListRepository("./database.json"));
     User user;
 
     public CommandParser(String username) {
-        this.user = new User(username);
+        this.user = service.readUser(username);
     }
 
     public void parse(String input) {
@@ -29,7 +29,7 @@ public class CommandParser {
             String username = input.split(" ")[1];
             this.user = new User(username);
             System.out.println(String.format("New user logged in: %s", this.user.getUsername()));
-        } else if (input.matches("add [0-9]+ [A-Za-z0-9]+")) {
+        } else if (input.matches("add [0-9]+ [A-Za-z0-9]+ to [A-Za-z0-9]+")) {
             parseAdd(input);
         } else if (input.matches("create [A-Za-z0-9]+")) {
             parseCreate(input);
@@ -39,11 +39,15 @@ public class CommandParser {
     }
 
     private void parseAdd(String input) {
-        int amount = Integer.parseInt(input.replaceFirst("add ", "")
-                .replaceFirst(" [A-Za-z0-9]+", ""));
-        String productName = input.replaceFirst("add [0-9]+ ", "");
+        String tmp = input.replaceFirst("add ", "");
+        int amount = Integer.parseInt(tmp.substring(0, tmp.indexOf(" ")));
+//        int amount = Integer.parseInt(input.replaceFirst("add ", "")
+//                .replace(" to [A-Za-z0-9]+", ""));
+        tmp = tmp.replaceFirst("[0-9]+ ", "");
+        String productName = tmp.substring(0, tmp.indexOf(" "));
         Product product = new Product(productName, amount);
-        String listName = input.replaceFirst("[A-Za-z0-9]+ to ", "");
+        tmp = tmp.replaceFirst("[A-Za-z0-9]+ to ", "");
+        String listName = tmp;
         ProductList list = user.findList(listName);
         if (list == null){
             System.out.println("List of that name doesn't exist.\n" +

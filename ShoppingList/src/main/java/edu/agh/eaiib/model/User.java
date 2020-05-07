@@ -44,7 +44,7 @@ public class User {
 
     public void addProductToList(Product product, ProductList list){
         int index = productLists.indexOf(list);
-        productLists.get(index).add(product);
+        productLists.get(index).getProductList().add(product);
     }
 
     @Override

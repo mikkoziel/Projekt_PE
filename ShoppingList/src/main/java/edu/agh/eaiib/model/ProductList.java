@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ProductList extends ArrayList<Product> {
+public class ProductList {
 
     private String name;
     private String creatorName;
     private List<String> usersNames = new ArrayList<>();
+    private ArrayList<Product> productList = new ArrayList<>();
 
     public ProductList() {
 
@@ -21,7 +22,7 @@ public class ProductList extends ArrayList<Product> {
 
     public ProductList(String name, String listCreatorName, List<Product> products) {
         this(name, listCreatorName);
-        addAll(products);
+        productList.addAll(products);
     }
 
     public String getName() {
@@ -34,6 +35,10 @@ public class ProductList extends ArrayList<Product> {
 
     public List<String> getUsers() {
         return usersNames;
+    }
+
+    public ArrayList<Product> getProductList() {
+        return productList;
     }
 
     @Override

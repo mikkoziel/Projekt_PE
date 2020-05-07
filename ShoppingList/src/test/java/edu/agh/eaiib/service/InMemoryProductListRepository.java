@@ -10,6 +10,8 @@ public class InMemoryProductListRepository implements ProductListRepository {
 
     ProductList productList = new ProductList();
     ArrayList<User> list = new ArrayList<User>();
+    ArrayList<ProductList> productLists= new ArrayList<ProductList>();
+    User user = new User();
 
     @Override
     public void save(ArrayList<User> list) {
@@ -23,11 +25,11 @@ public class InMemoryProductListRepository implements ProductListRepository {
 
     @Override
     public ArrayList<ProductList> readListsForUser(User user) {
-        return user.getProductLists();
+        return productLists;
     }
 
     @Override
-    public User readUser(User user) {
+    public User readUser(String username) {
         return user;
     }
 

@@ -11,6 +11,6 @@ public interface ProductListRepository {
     ProductList read();
     ArrayList<ProductList> readListsForUser(User user);
 
-    User readUser(User user);
+    User readUser(String username);
     void saveUser(User user);
 }
