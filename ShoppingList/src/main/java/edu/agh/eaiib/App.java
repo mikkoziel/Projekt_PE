@@ -17,9 +17,11 @@ public class App {
         String username = scanner.nextLine();
 
         System.out.println(String.format("%s, welcome to lists.", username));
+
+        CommandParser commandParser = new CommandParser();
         while (true) {
             String input = scanner.nextLine();
-            new CommandParser().parse(input);
+            commandParser.parse(input);
         }
     }
 }
