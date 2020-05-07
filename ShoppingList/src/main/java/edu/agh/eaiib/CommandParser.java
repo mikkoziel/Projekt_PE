@@ -6,6 +6,11 @@ import edu.agh.eaiib.service.ProductListService;
 public class CommandParser {
 
     static ProductListService service = new ProductListService(new GsonProductListRepository("database.json"));
+    String username = new String();
+
+    public CommandParser(String username) {
+        this.username = username;
+    }
 
     public void parse(String input) {
         if (input.isEmpty() || input.equals("help")) {
