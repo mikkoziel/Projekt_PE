@@ -3,10 +3,12 @@ package edu.agh.eaiib.model;
 public class Product {
     private String name;
     private int amount;
+    private boolean bought;
 
     public Product(String name, int amount) {
         this.name = name;
         this.amount = amount;
+        this.bought = false;
     }
 
     public String getName() {
@@ -17,6 +19,12 @@ public class Product {
         return amount;
     }
 
+    public boolean isBought(){return bought;}
+
+    public void buyProduct() {
+        this.bought = true;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -25,6 +33,7 @@ public class Product {
         Product product = (Product) o;
 
         if (amount != product.amount) return false;
+        if (bought != product.bought) return false;
         return name != null ? name.equals(product.name) : product.name == null;
     }
 
@@ -40,6 +49,8 @@ public class Product {
         return "Product{" +
                 "name='" + name + '\'' +
                 ", amount=" + amount +
+                ", bought=" + bought +
                 '}';
     }
+
 }
