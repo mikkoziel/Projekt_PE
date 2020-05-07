@@ -1,10 +1,11 @@
-package edu.agh.eaiib.repository;
+package edu.agh.eaiib.service;
 
 import edu.agh.eaiib.model.ProductList;
 import edu.agh.eaiib.repository.ProductListRepository;
 
 public class InMemoryProductListRepository implements ProductListRepository {
-    ProductList productList;
+
+    ProductList productList = new ProductList();
 
     @Override
     public void save(ProductList productList) {

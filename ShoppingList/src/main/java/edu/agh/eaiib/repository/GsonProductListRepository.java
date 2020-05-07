@@ -3,12 +3,10 @@ package edu.agh.eaiib.repository;
 import com.google.gson.Gson;
 import edu.agh.eaiib.model.ProductList;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 
 public class GsonProductListRepository implements ProductListRepository {
+
     public GsonProductListRepository(String productsFileName) {
         this.productsFileName = productsFileName;
     }
@@ -29,6 +27,8 @@ public class GsonProductListRepository implements ProductListRepository {
     public ProductList read() {
         try (Reader reader = new FileReader(productsFileName)) {
             return gson.fromJson(reader, ProductList.class);
+        } catch (FileNotFoundException e) {
+            return new ProductList();
         } catch (IOException e) {
             e.printStackTrace();
             return null;

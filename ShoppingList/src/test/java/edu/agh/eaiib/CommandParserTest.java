@@ -1,16 +1,41 @@
 package edu.agh.eaiib;
 
+import edu.agh.eaiib.model.Product;
+import edu.agh.eaiib.service.InMemoryProductListRepository;
 import edu.agh.eaiib.service.ProductListService;
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.mockito.Mockito.mock;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CommandParserTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
-    private CommandParser testObject = new CommandParser();
+public class CommandParserTest {
 
-    @Override
+    private CommandParser testObject;
+    private ProductListService service;
+
+    @Before
     public void setUp() {
-        testObject.service = mock(ProductListService.class);
+        testObject = new CommandParser("BLA");
+        service = new ProductListService(new InMemoryProductListRepository());
+        CommandParser.service = service;
+    }
+
+    @Test
+    public void testAddProduct() {
+        testObject.parse("add 3 apple");
+        List<Product> expected = new ArrayList<>();
+        expected.add(new Product("apple", 3));
+        assertEquals(expected, service.getList());
+
+        testObject.parse("add 4 apple");
+        expected.add(new Product("apple", 4));
+        assertEquals(expected, service.getList());
+
+        testObject.parse("add 10 egg");
+        expected.add(new Product("egg", 10));
+        assertEquals(expected, service.getList());
     }
 }

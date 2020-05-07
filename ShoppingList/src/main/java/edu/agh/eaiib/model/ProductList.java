@@ -2,26 +2,26 @@ package edu.agh.eaiib.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class ProductList {
+public class ProductList extends ArrayList<Product> {
+
     private String name;
     private String creatorName;
-    private List<String> usersNames;
-    private final List<Product> products;
+    private List<String> usersNames = new ArrayList<>();
 
-    public ProductList(String name, String listCreatorName){
-        this(name, listCreatorName, new ArrayList<Product>(), new ArrayList<String>());
+    public ProductList() {
+
     }
 
-    public ProductList(String name, String listCreatorName, List<Product> products){
-        this(name, listCreatorName, products, new ArrayList<String>());
-    }
-
-    public ProductList(String name, String listCreatorName, List<Product> products, List<String> users) {
+    public ProductList(String name, String creatorName) {
         this.name = name;
-        this.creatorName = listCreatorName;
-        this.products = products;
-        this.usersNames = users;
+        this.creatorName = creatorName;
+    }
+
+    public ProductList(String name, String listCreatorName, List<Product> products) {
+        this(name, listCreatorName);
+        addAll(products);
     }
 
     public String getName() {
@@ -32,38 +32,29 @@ public class ProductList {
         return creatorName;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<String> getUsers() {
+        return usersNames;
     }
-
-    public List<String> getUsers() { return usersNames; }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        ProductList that = (ProductList) o;
-
-        if (!name.equals(that.name)) return false;
-        if (!creatorName.equals(that.creatorName)) return false;
-        return products.equals(that.products);
+        if (!super.equals(o)) return false;
+        ProductList products = (ProductList) o;
+        return Objects.equals(name, products.name);
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + creatorName.hashCode();
-        result = 31 * result + products.hashCode();
-        return result;
+        return Objects.hash(super.hashCode(), name);
     }
 
     @Override
     public String toString() {
         return "ProductList{" +
                 "name='" + name + '\'' +
-                ", username='" + creatorName + '\'' +
-                ", products=" + products +
+                ", products=" + super.toString() +
                 '}';
     }
 }
