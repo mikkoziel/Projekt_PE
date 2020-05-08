@@ -7,7 +7,6 @@ import java.util.Objects;
 public class ProductList {
 
     private String name;
-    private String creatorName;
     private List<String> usersNames = new ArrayList<>();
     private List<Product> productList = new ArrayList<>();
 
@@ -17,7 +16,6 @@ public class ProductList {
 
     public ProductList(String name, String creatorName) {
         this.name = name;
-        this.creatorName = creatorName;
     }
 
     public ProductList(String name, String listCreatorName, List<Product> products) {
@@ -27,10 +25,6 @@ public class ProductList {
 
     public String getName() {
         return name;
-    }
-
-    public String getCreatorName() {
-        return creatorName;
     }
 
     public List<String> getUsers() {
@@ -60,7 +54,6 @@ public class ProductList {
         ProductList that = (ProductList) o;
 
         if (!Objects.equals(name, that.name)) return false;
-        if (!Objects.equals(creatorName, that.creatorName)) return false;
         if (!Objects.equals(usersNames, that.usersNames)) return false;
         return Objects.equals(productList, that.productList);
     }
@@ -68,7 +61,6 @@ public class ProductList {
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);
         result = 31 * result + (usersNames != null ? usersNames.hashCode() : 0);
         result = 31 * result + (productList != null ? productList.hashCode() : 0);
         return result;
