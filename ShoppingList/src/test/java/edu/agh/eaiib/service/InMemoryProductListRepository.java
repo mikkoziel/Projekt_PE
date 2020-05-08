@@ -10,7 +10,7 @@ public class InMemoryProductListRepository implements ProductListRepository {
 
     ProductList productList = new ProductList();
     ArrayList<User> list = new ArrayList<User>();
-    ArrayList<ProductList> productLists= new ArrayList<ProductList>();
+    ArrayList<ProductList> productLists = new ArrayList<ProductList>();
     User user = new User();
 
     @Override

@@ -28,11 +28,11 @@ public class ProductListService {
         repository.saveUser(user);
     }
 
-    public void saveUser(User user){
+    public void saveUser(User user) {
         repository.saveUser(user);
     }
 
-    public User readUser(String username){
+    public User readUser(String username) {
         return repository.readUser(username);
     }
 }

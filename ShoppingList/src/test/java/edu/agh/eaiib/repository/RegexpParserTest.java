@@ -1,9 +1,7 @@
 package edu.agh.eaiib.repository;
 
-import edu.agh.eaiib.model.ProductList;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class RegexpParserTest {
@@ -161,7 +159,7 @@ public class RegexpParserTest {
     }
 
     @Test
-    public void testAddingUserParserWithProperString(){
+    public void testAddingUserParserWithProperString() {
         String inputString = "user add testuser to testlist";
 
         boolean result = inputString.matches(regexp5);
@@ -170,7 +168,7 @@ public class RegexpParserTest {
     }
 
     @Test
-    public void testAddingUserParserWithImproperString(){
+    public void testAddingUserParserWithImproperString() {
         String inputString = "user dj add to ljhl";
 
         boolean result = inputString.matches(regexp5);

@@ -21,7 +21,9 @@ public class Product {
         return amount;
     }
 
-    public boolean isBought(){return bought;}
+    public boolean isBought() {
+        return bought;
+    }
 
     public void buyProduct() {
         this.bought = true;

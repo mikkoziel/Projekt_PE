@@ -6,13 +6,13 @@ public class User {
     String username;
     ArrayList<ProductList> productLists;
 
-    public User(){
+    public User() {
 
     }
 
-    public User(String username){
+    public User(String username) {
         this.username = username;
-        this.productLists = new ArrayList<ProductList>();;
+        this.productLists = new ArrayList<ProductList>();
     }
 
     public String getUsername() {
@@ -23,36 +23,36 @@ public class User {
         return productLists;
     }
 
-    public void addProductList(ProductList list){
+    public void addProductList(ProductList list) {
         productLists.add(list);
     }
 
-    public ProductList findList(String listName){
-        for(ProductList list: this.getProductLists()){
-            if(list.getName().equals(listName)){
+    public ProductList findList(String listName) {
+        for (ProductList list : this.getProductLists()) {
+            if (list.getName().equals(listName)) {
                 return list;
             }
         }
         return null;
     }
 
-    public void replacelist(ProductList list1, ProductList list2){
+    public void replacelist(ProductList list1, ProductList list2) {
         int index = productLists.indexOf(list1);
         productLists.set(index, list2);
 
     }
 
-    public void addProductToList(Product product, ProductList list){
+    public void addProductToList(Product product, ProductList list) {
         int index = productLists.indexOf(list);
         productLists.get(index).getProductList().add(product);
     }
 
-    public void buyProductFromList(String productName, ProductList list){
+    public void buyProductFromList(String productName, ProductList list) {
         int index = productLists.indexOf(list);
         productLists.get(index).buyProduct(productName);
     }
 
-    public void addUserToList(String username, ProductList list){
+    public void addUserToList(String username, ProductList list) {
         int index = productLists.indexOf(list);
         productLists.get(index).getUsers().add(username);
     }
@@ -63,7 +63,7 @@ public class User {
                 "username='" + username + '\'' +
                 ", productsLists={");
 
-        for(ProductList list: productLists) {
+        for (ProductList list : productLists) {
             string.append(list.toString()).append(", ");
         }
         string.append('}');

@@ -3,8 +3,8 @@ package edu.agh.eaiib;
 import edu.agh.eaiib.model.Product;
 import edu.agh.eaiib.service.InMemoryProductListRepository;
 import edu.agh.eaiib.service.ProductListService;
-import org.junit.Before;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -16,11 +16,10 @@ import static org.junit.Assert.assertEquals;
 
 public class CommandParserTest {
 
-    private CommandParser testObject;
-    private ProductListService service;
-
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
+    private CommandParser testObject;
+    private ProductListService service;
 
     @Before
     public void setUp() {

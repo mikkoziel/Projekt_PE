@@ -41,10 +41,10 @@ public class ProductList {
         return productList;
     }
 
-    public void buyProduct(String productName){
-        if(productList.size() > 0){
-            for(Product product: productList){
-                if(product.getName().equals(productName)){
+    public void buyProduct(String productName) {
+        if (productList.size() > 0) {
+            for (Product product : productList) {
+                if (product.getName().equals(productName)) {
                     product.buyProduct();
                 }
             }
@@ -73,7 +73,7 @@ public class ProductList {
                 ", users=[" + String.join(",", usersNames) + "]" +
                 ", products=[");
 
-        for (Product product: productList) {
+        for (Product product : productList) {
             builder.append(product.toString()).append(",");
         }
 
