@@ -7,6 +7,12 @@ public class Product {
     private int amount;
     private boolean bought;
 
+    public Product(String name, int amount, boolean bought) {
+        this.name = name;
+        this.amount = amount;
+        this.bought = bought;
+    }
+
     public Product(String name, int amount) {
         this.name = name;
         this.amount = amount;

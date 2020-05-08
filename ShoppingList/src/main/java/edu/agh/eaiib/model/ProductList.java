@@ -27,7 +27,7 @@ public class ProductList {
         return listName;
     }
 
-    public List<String> getUsers() {
+    public List<String> getUsersWithAccess() {
         return usersWithAccess;
     }
 

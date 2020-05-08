@@ -55,7 +55,7 @@ public class User {
 
     public void addUserToList(String username, ProductList list) {
         int index = productLists.indexOf(list);
-        productLists.get(index).getUsers().add(username);
+        productLists.get(index).getUsersWithAccess().add(username);
     }
 
     @Override
