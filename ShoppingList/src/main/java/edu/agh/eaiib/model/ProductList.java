@@ -9,7 +9,7 @@ public class ProductList {
     private String name;
     private String creatorName;
     private List<String> usersNames = new ArrayList<>();
-    private ArrayList<Product> productList = new ArrayList<>();
+    private List<Product> productList = new ArrayList<>();
 
     public ProductList() {
 
@@ -37,7 +37,7 @@ public class ProductList {
         return usersNames;
     }
 
-    public ArrayList<Product> getProductList() {
+    public List<Product> getProductList() {
         return productList;
     }
 
@@ -56,14 +56,22 @@ public class ProductList {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        ProductList products = (ProductList) o;
-        return Objects.equals(name, products.name);
+
+        ProductList that = (ProductList) o;
+
+        if (!Objects.equals(name, that.name)) return false;
+        if (!Objects.equals(creatorName, that.creatorName)) return false;
+        if (!Objects.equals(usersNames, that.usersNames)) return false;
+        return Objects.equals(productList, that.productList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name);
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);
+        result = 31 * result + (usersNames != null ? usersNames.hashCode() : 0);
+        result = 31 * result + (productList != null ? productList.hashCode() : 0);
+        return result;
     }
 
     @Override

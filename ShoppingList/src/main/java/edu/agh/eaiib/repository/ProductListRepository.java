@@ -4,15 +4,14 @@ import edu.agh.eaiib.model.ProductList;
 import edu.agh.eaiib.model.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface ProductListRepository {
     void save(ArrayList<User> users);
 
     ProductList read();
 
-    ArrayList<ProductList> readListsForUser(User user);
-
-    ArrayList<ProductList> readAllListsForUser(User user);
+    List<ProductList> readListsForUser(User user);
 
     User readUser(String username);
 

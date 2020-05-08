@@ -7,6 +7,7 @@ import edu.agh.eaiib.repository.GsonProductListRepository;
 import edu.agh.eaiib.service.ProductListService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CommandParser {
 
@@ -119,7 +120,7 @@ public class CommandParser {
     }
 
     private void parseShowAll() {
-        ArrayList<ProductList> lists = service.getLists(user);
+        List<ProductList> lists = service.getLists(user);
 
         if (lists == null) {
             System.out.println("List doesn't exist.");

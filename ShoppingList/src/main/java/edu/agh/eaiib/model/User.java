@@ -1,10 +1,11 @@
 package edu.agh.eaiib.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     String username;
-    ArrayList<ProductList> productLists;
+    List<ProductList> productLists;
 
     public User() {
 
@@ -12,14 +13,14 @@ public class User {
 
     public User(String username) {
         this.username = username;
-        this.productLists = new ArrayList<ProductList>();
+        this.productLists = new ArrayList<>();
     }
 
     public String getUsername() {
         return username;
     }
 
-    public ArrayList<ProductList> getProductLists() {
+    public List<ProductList> getProductLists() {
         return productLists;
     }
 

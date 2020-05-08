@@ -8,6 +8,7 @@ import edu.agh.eaiib.model.User;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GsonProductListRepository implements ProductListRepository {
 
@@ -75,8 +76,8 @@ public class GsonProductListRepository implements ProductListRepository {
         save(users);
     }
 
-    public ArrayList<ProductList> readListsForUser(User user) {
-        ArrayList<User> users = readLists();
+    public List<ProductList> readListsForUser(User user) {
+        List<User> users = readLists();
         for (User u : users) {
             if (u.getUsername().equals(user.getUsername())) {
                 return u.getProductLists();
@@ -84,18 +85,6 @@ public class GsonProductListRepository implements ProductListRepository {
         }
         return new ArrayList<ProductList>();
 
-    }
-
-    public ArrayList<ProductList> readAllListsForUser(User user) {
-        ArrayList<User> users = readLists();
-        ArrayList<ProductList> allProductLists = new ArrayList<ProductList>();
-        for (User u : users) {
-            ArrayList<ProductList> productLists = u.getProductLists();
-            productLists.forEach(x -> {
-                if (x.getCreatorName().equals(user.getUsername())) allProductLists.add(x);
-            });
-        }
-        return allProductLists;
     }
 
     public User readUser(String username) {

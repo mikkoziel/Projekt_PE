@@ -6,6 +6,7 @@ import edu.agh.eaiib.model.User;
 import edu.agh.eaiib.repository.ProductListRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductListService {
 
@@ -19,7 +20,7 @@ public class ProductListService {
         return repository.read();
     }
 
-    public ArrayList<ProductList> getLists(User user) {
+    public List<ProductList> getLists(User user) {
         return repository.readListsForUser(user);
     }
 
