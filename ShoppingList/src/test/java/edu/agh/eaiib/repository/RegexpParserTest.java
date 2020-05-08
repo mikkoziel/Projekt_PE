@@ -13,6 +13,8 @@ public class RegexpParserTest {
     String regexp3 = "create [A-Za-z1-9]+";
     String regexp4 = "buy [A-Za-z1-9]+ in [A-Za-z1-9]+";
     String regexp5 = "user add [A-Za-z0-9]+ to [A-Za-z0-9]+";
+    String regexp6 = "show [A-Za-z0-9]+";
+    String regexp7 = "showAll";
 
     @Test
     public void testLoggingInParserWithProperString() {
@@ -174,5 +176,29 @@ public class RegexpParserTest {
         boolean result = inputString.matches(regexp5);
 
         assertTrue(!result);
+    }
+
+    @Test
+    public void testShowinListInParserWithProperString() {
+        //given
+        String inputString = "show list1";
+
+        //when
+        Boolean result = inputString.matches(regexp6);
+
+        //then
+        assertTrue(result);
+    }
+
+    @Test
+    public void testShowAllInParserWithProperString() {
+        //given
+        String inputString = "showAll";
+
+        //when
+        Boolean result = inputString.matches(regexp7);
+
+        //then
+        assertTrue(result);
     }
 }
