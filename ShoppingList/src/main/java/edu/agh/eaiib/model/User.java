@@ -2,6 +2,7 @@ package edu.agh.eaiib.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class User {
     private String username;
@@ -28,33 +29,36 @@ public class User {
     }
 
     public ProductList findList(String listName) {
-        for (ProductList list : this.getProductLists()) {
-            if (list.getListName().equals(listName)) {
-                return list;
-            }
-        }
-        return null;
+        return productLists.stream()
+                .filter(list -> list.getListName().equals(listName))
+                .findFirst()
+                .orElse(null);
     }
 
     public void replaceList(ProductList list, ProductList replacement) {
         int index = productLists.indexOf(list);
-        productLists.set(index, replacement);
-
+        if (index != -1) {
+            productLists.set(index, replacement);
+        }
     }
 
     public void addProductToList(Product product, ProductList list) {
-        int index = productLists.indexOf(list);
-        productLists.get(index).getProductList().add(product);
+        doIfPresent(list, productList -> productList.getProductList().add(product));
     }
 
     public void buyProductFromList(String productName, ProductList list) {
-        int index = productLists.indexOf(list);
-        productLists.get(index).buyProduct(productName);
+        doIfPresent(list, productList -> productList.buyProduct(productName));
     }
 
     public void addUserToList(String username, ProductList list) {
+        doIfPresent(list, productList -> productList.getUsersWithAccess().add(username));
+    }
+
+    private void doIfPresent(ProductList list, Consumer<ProductList> productListConsumer) {
         int index = productLists.indexOf(list);
-        productLists.get(index).getUsersWithAccess().add(username);
+        if (index != -1) {
+            productListConsumer.accept(list);
+        }
     }
 
     @Override

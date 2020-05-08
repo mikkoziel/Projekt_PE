@@ -41,7 +41,7 @@ public class UserTest {
         //given
         User user = new User("testUser");
         ProductList list = exampleList();
-        ProductList replacement = exampleList();
+        ProductList replacement = exampleList2();
         user.addProductList(list);
 
         //when
@@ -57,7 +57,7 @@ public class UserTest {
         //given
         User user = new User("testUser");
         ProductList existingList = exampleList();
-        ProductList replacement = exampleList();
+        ProductList replacement = exampleList2();
         user.addProductList(existingList);
 
         //when
@@ -104,6 +104,15 @@ public class UserTest {
     private ProductList exampleList() {
         return new ProductList(
                 "listName",
+                asList(
+                        new Product("testProductName", new Random().nextInt(), false),
+                        new Product("testProductName2", 6, false)
+                ));
+    }
+
+    private ProductList exampleList2() {
+        return new ProductList(
+                "listName2",
                 asList(
                         new Product("testProductName", new Random().nextInt(), false),
                         new Product("testProductName2", 6, false)
