@@ -3,6 +3,7 @@ package edu.agh.eaiib.repository;
 import edu.agh.eaiib.model.Product;
 import edu.agh.eaiib.model.ProductList;
 import edu.agh.eaiib.model.User;
+import org.junit.After;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
@@ -50,5 +51,10 @@ public class ProductListRepositoryTest {
 
         //then
         assertEquals(productList2, retrieved);
+    }
+
+    @After
+    public void tearDown() {
+        productListRepository.saveUser(new User(username));
     }
 }

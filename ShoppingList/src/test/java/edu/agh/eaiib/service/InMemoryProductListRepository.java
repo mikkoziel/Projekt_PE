@@ -20,11 +20,6 @@ public class InMemoryProductListRepository implements ProductListRepository {
     }
 
     @Override
-    public ProductList read() {
-        return productList;
-    }
-
-    @Override
     public List<ProductList> readListsForUser(User user) {
         return productLists;
     }

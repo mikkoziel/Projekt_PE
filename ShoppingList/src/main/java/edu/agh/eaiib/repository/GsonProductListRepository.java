@@ -5,10 +5,16 @@ import com.google.gson.reflect.TypeToken;
 import edu.agh.eaiib.model.ProductList;
 import edu.agh.eaiib.model.User;
 
-import java.io.*;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static java.util.stream.Collectors.toList;
 
 public class GsonProductListRepository implements ProductListRepository {
 
@@ -30,18 +36,6 @@ public class GsonProductListRepository implements ProductListRepository {
         }
     }
 
-    @Override
-    public ProductList read() {
-        try (Reader reader = new FileReader(productsFileName)) {
-            return gson.fromJson(reader, ProductList.class);
-        } catch (FileNotFoundException e) {
-            return new ProductList();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public List<User> readLists() {
         try (Reader reader = new FileReader(productsFileName)) {
             List<User> users = gson.fromJson(reader, new TypeToken<ArrayList<User>>() {
@@ -54,26 +48,15 @@ public class GsonProductListRepository implements ProductListRepository {
     }
 
     public void saveUser(User user) {
-        List<User> users = readLists();
-        boolean userExists = false;
-        if (users != null) {
-            for (User u : users) {
-                if (u.getUsername().equals(user.getUsername())) {
-                    int index = users.indexOf(u);
-                    users.set(index, user);
-                    userExists = true;
-                    break;
-                }
-            }
+        List<User> withUpdatedUser = readLists().stream()
+                .map(processedUser -> (Objects.equals(processedUser.getUsername(), user.getUsername())) ? user : processedUser)
+                .collect(toList());
 
-            if (!userExists) {
-                users.add(user);
-            }
-        } else {
-            users = new ArrayList<User>();
-            users.add(user);
+        if (!withUpdatedUser.contains(user)) {
+            withUpdatedUser.add(user);
         }
-        save(users);
+
+        save(withUpdatedUser);
     }
 
     public List<ProductList> readListsForUser(User user) {
@@ -83,7 +66,7 @@ public class GsonProductListRepository implements ProductListRepository {
                 return u.getProductLists();
             }
         }
-        return new ArrayList<ProductList>();
+        return new ArrayList<>();
 
     }
 

@@ -9,8 +9,6 @@ import java.util.List;
 public interface ProductListRepository {
     void save(List<User> users);
 
-    ProductList read();
-
     List<ProductList> readListsForUser(User user);
 
     User readUser(String username);
