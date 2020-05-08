@@ -6,7 +6,6 @@ import edu.agh.eaiib.model.User;
 import edu.agh.eaiib.repository.GsonProductListRepository;
 import edu.agh.eaiib.service.ProductListService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CommandParser {
@@ -67,7 +66,7 @@ public class CommandParser {
 
     private void parseCreate(String input) {
         String listName = input.replaceFirst("create ", "");
-        ProductList list = new ProductList(listName, user.getUsername());
+        ProductList list = new ProductList(listName);
         user.addProductList(list);
         service.saveUser(user);
     }
@@ -128,7 +127,7 @@ public class CommandParser {
         }
 
         for (ProductList list : lists) {
-            System.out.println("List of products from " + list.getName() + ":");
+            System.out.println("List of products from " + list.getListName() + ":");
             for (Product product : list.getProductList()) {
                 System.out.println(product.getAmount() + " " + product.getName() + " bought: " + product.isBought());
             }

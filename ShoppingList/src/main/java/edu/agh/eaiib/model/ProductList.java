@@ -6,29 +6,29 @@ import java.util.Objects;
 
 public class ProductList {
 
-    private String name;
-    private List<String> usersNames = new ArrayList<>();
+    private String listName;
     private List<Product> productList = new ArrayList<>();
+    private List<String> usersWithAccess = new ArrayList<>();
 
     public ProductList() {
 
     }
 
-    public ProductList(String name, String creatorName) {
-        this.name = name;
+    public ProductList(String listName) {
+        this.listName = listName;
     }
 
-    public ProductList(String name, String listCreatorName, List<Product> products) {
-        this(name, listCreatorName);
+    public ProductList(String listName, List<Product> products) {
+        this(listName);
         productList.addAll(products);
     }
 
-    public String getName() {
-        return name;
+    public String getListName() {
+        return listName;
     }
 
     public List<String> getUsers() {
-        return usersNames;
+        return usersWithAccess;
     }
 
     public List<Product> getProductList() {
@@ -53,15 +53,15 @@ public class ProductList {
 
         ProductList that = (ProductList) o;
 
-        if (!Objects.equals(name, that.name)) return false;
-        if (!Objects.equals(usersNames, that.usersNames)) return false;
+        if (!Objects.equals(listName, that.listName)) return false;
+        if (!Objects.equals(usersWithAccess, that.usersWithAccess)) return false;
         return Objects.equals(productList, that.productList);
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (usersNames != null ? usersNames.hashCode() : 0);
+        int result = listName != null ? listName.hashCode() : 0;
+        result = 31 * result + (usersWithAccess != null ? usersWithAccess.hashCode() : 0);
         result = 31 * result + (productList != null ? productList.hashCode() : 0);
         return result;
     }
@@ -69,8 +69,8 @@ public class ProductList {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("ProductList{" +
-                "name='" + name + '\'' +
-                ", users=[" + String.join(",", usersNames) + "]" +
+                "name='" + listName + '\'' +
+                ", users=[" + String.join(",", usersWithAccess) + "]" +
                 ", products=[");
 
         for (Product product : productList) {

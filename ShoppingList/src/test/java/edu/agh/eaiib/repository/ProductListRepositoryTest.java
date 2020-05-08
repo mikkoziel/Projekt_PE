@@ -17,8 +17,8 @@ public class ProductListRepositoryTest {
     Product product1 = new Product("testName", 2);
     Product product2 = new Product("testName2", 6);
     Product product3 = new Product("testName3", 5);
-    ProductList productList1 = new ProductList("listName", "testUserName", asList(product1, product2));
-    ProductList productList2 = new ProductList("anotherListName", "anotherUserName", asList(product1, product3));
+    ProductList productList1 = new ProductList("listName", asList(product1, product2));
+    ProductList productList2 = new ProductList("anotherListName", asList(product1, product3));
 
     @Test
     public void shouldSaveAndRetrieveProductList() {
@@ -30,7 +30,7 @@ public class ProductListRepositoryTest {
         user.addProductList(productList);
         productListRepository.saveUser(user);
         User retrivedUser = productListRepository.readUser(user.getUsername());
-        ProductList retrieved = retrivedUser.findList(productList.getName());
+        ProductList retrieved = retrivedUser.findList(productList.getListName());
 
         //then
         assertEquals(productList.toString(), retrieved.toString());
@@ -47,7 +47,7 @@ public class ProductListRepositoryTest {
         user.replacelist(productList1, productList2);
         productListRepository.saveUser(user);
         User retrievedUser = productListRepository.readUser(user.getUsername());
-        ProductList retrieved = user.findList(productList2.getName());
+        ProductList retrieved = user.findList(productList2.getListName());
 
         //then
         assertEquals(productList2, retrieved);

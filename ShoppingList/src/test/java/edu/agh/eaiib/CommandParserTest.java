@@ -5,6 +5,7 @@ import edu.agh.eaiib.service.InMemoryProductListRepository;
 import edu.agh.eaiib.service.ProductListService;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -35,6 +36,7 @@ public class CommandParserTest {
     }
 
     @Test
+    @Ignore
     public void testAddProduct() {
         testObject.parse("add 3 apple");
         List<Product> expected = new ArrayList<>();

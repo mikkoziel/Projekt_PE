@@ -30,7 +30,7 @@ public class User {
 
     public ProductList findList(String listName) {
         for (ProductList list : this.getProductLists()) {
-            if (list.getName().equals(listName)) {
+            if (list.getListName().equals(listName)) {
                 return list;
             }
         }
