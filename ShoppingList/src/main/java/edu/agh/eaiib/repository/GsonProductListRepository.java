@@ -53,15 +53,22 @@ public class GsonProductListRepository implements ProductListRepository {
 
     public void saveUser(User user){
         ArrayList<User> users = readLists();
+        boolean userExists = false;
         if(users != null){
             for(User u: users){
                 if(u.getUsername().equals(user.getUsername())){
                     int index = users.indexOf(u);
                     users.set(index, user);
+                    userExists = true;
                     break;
                 }
             }
-        }else{
+
+            if (!userExists){
+                users.add(user);
+            }
+        }
+        else{
             users = new ArrayList<User>();
             users.add(user);
         }
@@ -79,6 +86,16 @@ public class GsonProductListRepository implements ProductListRepository {
 
     }
 
+    public ArrayList<ProductList> readAllListsForUser(User user){
+        ArrayList<User> users = readLists();
+        ArrayList<ProductList> allProductLists = new ArrayList<ProductList>();
+        for (User u: users) {
+            ArrayList<ProductList> productLists = u.getProductLists();
+            productLists.forEach(x -> { if(x.getCreatorName().equals(user.getUsername())) allProductLists.add(x);});
+        }
+        return allProductLists;
+    }
+
     public User readUser(String username){
         ArrayList<User> users = readLists();
         for(User u: users){
@@ -86,7 +103,7 @@ public class GsonProductListRepository implements ProductListRepository {
                 return u;
             }
         }
-        return new User();
+        return new User(username);
 
     }
 }

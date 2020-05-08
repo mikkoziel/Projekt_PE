@@ -18,13 +18,14 @@ public class CommandParser {
         this.user = service.readUser(username);
     }
 
-    public void parse(String input) {
+    public boolean parse(String input) {
         if (input.isEmpty() || input.equals("help")) {
             System.out.println("Available commands:");
             System.out.println("login - changes the current user creating lists");
             System.out.println("add <number> <productName> to <listName> - adds a product to the list, if the list doesn't exist, the system makes it with the specified entry");
             System.out.println("create <listName> - creates a list with the specified name and the user as the creator of the list");
             System.out.println("buy <productName> in <listName> - marks the product as bought");
+            System.out.println("user add <username> to <listname> - gives user read rights to list");
         } else if (input.matches("login [A-Za-z0-9]+")) {
             String username = input.split(" ")[1];
             this.user = new User(username);
@@ -35,7 +36,12 @@ public class CommandParser {
             parseCreate(input);
         } else if (input.matches("buy [A-Za-z0-9]+ in [A-Za-z0-9]+")) {
             parseBuy(input);
+        } else if (input.matches("user add [A-Za-z0-9]+ to [A-Za-z0-9]+")){
+            parseUserAdd(input);
+        } else if (input.matches("quit")){
+            return false;
         }
+        return true;
     }
 
     private void parseAdd(String input) {
@@ -74,6 +80,20 @@ public class CommandParser {
             return;
         }
         user.buyProductFromList(productName, list);
+        service.saveUser(user);
+    }
+
+    private void parseUserAdd(String input) {
+        String tmp = input.replaceFirst("user add ", "");
+        String userName = tmp.substring(0, tmp.indexOf(" "));
+        tmp = tmp.replaceFirst("[A-Za-z0-9]+ to ", "");
+        String listName = tmp;
+        ProductList list = user.findList(listName);
+        if (list == null){
+            System.out.println(String.format("List %s does not exists.", listName));
+            return;
+        }
+        user.addUserToList(userName, list);
         service.saveUser(user);
     }
 

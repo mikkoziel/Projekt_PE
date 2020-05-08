@@ -48,7 +48,7 @@ public class ProductList {
                     product.buyProduct();
                 }
             }
-            System.out.println("No product by this name on this list");
+            //System.out.println("No product by this name on this list");
         }
     }
 
@@ -68,9 +68,16 @@ public class ProductList {
 
     @Override
     public String toString() {
-        return "ProductList{" +
+        StringBuilder builder = new StringBuilder("ProductList{" +
                 "name='" + name + '\'' +
-                ", products=" + super.toString() +
-                '}';
+                ", users=[" + String.join(",", usersNames) + "]" +
+                ", products=[");
+
+        for (Product product: productList) {
+            builder.append(product.toString()).append(",");
+        }
+
+        builder.append("]}'");
+        return builder.toString();
     }
 }

@@ -6,7 +6,7 @@ import edu.agh.eaiib.model.User;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class ProductListRepositoryTest {
     private final String filename = "products-test.json";
@@ -33,7 +33,7 @@ public class ProductListRepositoryTest {
         ProductList retrieved = retrivedUser.findList(productList.getName());
 
         //then
-        assertEquals(productList, retrieved);
+        assertEquals(productList.toString(), retrieved.toString());
     }
 
     @Test

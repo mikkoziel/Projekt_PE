@@ -1,8 +1,5 @@
 package edu.agh.eaiib;
 
-import edu.agh.eaiib.repository.GsonProductListRepository;
-import edu.agh.eaiib.service.ProductListService;
-
 import java.util.Scanner;
 
 /**
@@ -20,7 +17,8 @@ public class App {
         CommandParser commandParser = new CommandParser(username);
         while (true) {
             String input = scanner.nextLine();
-            commandParser.parse(input);
+            boolean shouldContinue = commandParser.parse(input);
+            if (!shouldContinue) break;
         }
     }
 }
