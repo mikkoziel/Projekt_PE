@@ -14,12 +14,13 @@ public class GsonProductListRepository implements ProductListRepository {
 
     final static Gson gson = new Gson();
     public final String productsFileName;
+
     public GsonProductListRepository(String productsFileName) {
         this.productsFileName = productsFileName;
     }
 
     @Override
-    public void save(ArrayList<User> users) {
+    public void save(List<User> users) {
         try (FileWriter writer = new FileWriter(productsFileName)) {
             Type listOfUsers = new TypeToken<ArrayList<User>>() {
             }.getType();
@@ -41,20 +42,19 @@ public class GsonProductListRepository implements ProductListRepository {
         }
     }
 
-    public ArrayList<User> readLists() {
+    public List<User> readLists() {
         try (Reader reader = new FileReader(productsFileName)) {
-            return gson.fromJson(reader, new TypeToken<ArrayList<User>>() {
+            List<User> users = gson.fromJson(reader, new TypeToken<ArrayList<User>>() {
             }.getType());
-        } catch (FileNotFoundException e) {
-            return null;
+            return users == null ? new ArrayList<>() : users;
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
     public void saveUser(User user) {
-        ArrayList<User> users = readLists();
+        List<User> users = readLists();
         boolean userExists = false;
         if (users != null) {
             for (User u : users) {
@@ -88,7 +88,7 @@ public class GsonProductListRepository implements ProductListRepository {
     }
 
     public User readUser(String username) {
-        ArrayList<User> users = readLists();
+        List<User> users = readLists();
         for (User u : users) {
             if (u.getUsername().equals(username)) {
                 return u;

@@ -5,16 +5,17 @@ import edu.agh.eaiib.model.User;
 import edu.agh.eaiib.repository.ProductListRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class InMemoryProductListRepository implements ProductListRepository {
 
     ProductList productList = new ProductList();
-    ArrayList<User> list = new ArrayList<User>();
-    ArrayList<ProductList> productLists = new ArrayList<ProductList>();
+    List<User> list = new ArrayList<User>();
+    List<ProductList> productLists = new ArrayList<ProductList>();
     User user = new User();
 
     @Override
-    public void save(ArrayList<User> list) {
+    public void save(List<User> list) {
         this.list = list;
     }
 
@@ -24,7 +25,7 @@ public class InMemoryProductListRepository implements ProductListRepository {
     }
 
     @Override
-    public ArrayList<ProductList> readListsForUser(User user) {
+    public List<ProductList> readListsForUser(User user) {
         return productLists;
     }
 

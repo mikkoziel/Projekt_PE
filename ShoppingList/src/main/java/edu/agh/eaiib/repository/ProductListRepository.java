@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface ProductListRepository {
-    void save(ArrayList<User> users);
+    void save(List<User> users);
 
     ProductList read();
 
