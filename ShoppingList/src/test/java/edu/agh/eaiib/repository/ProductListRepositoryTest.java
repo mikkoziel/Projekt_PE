@@ -43,7 +43,7 @@ public class ProductListRepositoryTest {
         productListRepository.saveUser(user);
 
         //when
-        user.replacelist(productList1, productList2);
+        user.replaceList(productList1, productList2);
         productListRepository.saveUser(user);
         User retrievedUser = productListRepository.readUser(user.getUsername());
         ProductList retrieved = user.findList(productList2.getListName());

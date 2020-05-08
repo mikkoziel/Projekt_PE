@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    String username;
-    List<ProductList> productLists;
+    private String username;
+    private List<ProductList> productLists = new ArrayList<>();
 
     public User() {
 
@@ -13,7 +13,6 @@ public class User {
 
     public User(String username) {
         this.username = username;
-        this.productLists = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -37,9 +36,9 @@ public class User {
         return null;
     }
 
-    public void replacelist(ProductList list1, ProductList list2) {
-        int index = productLists.indexOf(list1);
-        productLists.set(index, list2);
+    public void replaceList(ProductList list, ProductList replacement) {
+        int index = productLists.indexOf(list);
+        productLists.set(index, replacement);
 
     }
 
