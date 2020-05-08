@@ -1,1 +1,1 @@
-[{"username":"mk","productLists":[{"productList":[{"name":"apples","amount":3,"bought":true}],"usersWithAccess":[]}]}]
+[{"username":"mk","productLists":[{"listName":"shoppingList","productList":[{"name":"apples","amount":3,"bought":false}],"usersWithAccess":[]}]}]
