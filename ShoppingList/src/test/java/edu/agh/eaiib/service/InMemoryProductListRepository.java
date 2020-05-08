@@ -29,6 +29,11 @@ public class InMemoryProductListRepository implements ProductListRepository {
     }
 
     @Override
+    public ArrayList<ProductList> readAllListsForUser(User user) {
+        return null;
+    }
+
+    @Override
     public User readUser(String username) {
         return user;
     }

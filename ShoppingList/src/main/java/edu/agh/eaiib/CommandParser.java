@@ -26,6 +26,8 @@ public class CommandParser {
             System.out.println("create <listName> - creates a list with the specified name and the user as the creator of the list");
             System.out.println("buy <productName> in <listName> - marks the product as bought");
             System.out.println("user add <username> to <listname> - gives user read rights to list");
+            System.out.println("show <listname> - prints list with listname");
+            System.out.println("showAll - prints all lists that user created");
         } else if (input.matches("login [A-Za-z0-9]+")) {
             String username = input.split(" ")[1];
             this.user = new User(username);
@@ -38,6 +40,10 @@ public class CommandParser {
             parseBuy(input);
         } else if (input.matches("user add [A-Za-z0-9]+ to [A-Za-z0-9]+")){
             parseUserAdd(input);
+        } else if (input.matches("show [A-Za-z0-9]+")){
+            parseShowList(input);
+        } else if (input.matches("showAll")){
+            parseShowAll();
         } else if (input.matches("quit")){
             return false;
         }
@@ -95,6 +101,39 @@ public class CommandParser {
         }
         user.addUserToList(userName, list);
         service.saveUser(user);
+    }
+    private void parseShowList(String input) {
+        String tmp = input.replaceFirst("show ", "");
+        tmp = tmp.replaceFirst("[A-Za-z0-9]+ ", "");
+        String listName = tmp;
+        ProductList list = user.findList(listName);
+
+        if (list == null){
+            System.out.println("List of that name doesn't exist.\n" +
+                    " First you must create list with that name.");
+            return;
+        }
+
+        System.out.println("List of products from " + listName + ":");
+        for (Product product : list.getProductList()) {
+            System.out.println(product.getAmount() + " " + product.getName() + " bought: " + product.isBought());
+        }
+    }
+
+    private void parseShowAll() {
+        ArrayList<ProductList> lists = service.getLists(user);
+
+        if (lists == null){
+            System.out.println("List doesn't exist.");
+            return;
+        }
+
+        for (ProductList list: lists) {
+            System.out.println("List of products from " + list.getName() + ":");
+            for (Product product : list.getProductList()) {
+                System.out.println(product.getAmount() + " " + product.getName() + " bought: " + product.isBought());
+            }
+        }
     }
 
 }
