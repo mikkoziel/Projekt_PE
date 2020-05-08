@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static java.util.stream.Collectors.toList;
+
 public class ProductList {
 
     private String listName;
@@ -36,14 +38,11 @@ public class ProductList {
     }
 
     public void buyProduct(String productName) {
-        if (productList.size() > 0) {
-            for (Product product : productList) {
-                if (product.getName().equals(productName)) {
-                    product.buyProduct();
-                }
+        productList = productList.stream().peek(product -> {
+            if (product.getName().equals(productName)) {
+                product.buyProduct();
             }
-            //System.out.println("No product by this name on this list");
-        }
+        }).collect(toList());
     }
 
     @Override
