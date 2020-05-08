@@ -47,6 +47,11 @@ public class User {
         productLists.get(index).getProductList().add(product);
     }
 
+    public void buyProductFromList(String productName, ProductList list){
+        int index = productLists.indexOf(list);
+        productLists.get(index).buyProduct(productName);
+    }
+
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder("User{" +

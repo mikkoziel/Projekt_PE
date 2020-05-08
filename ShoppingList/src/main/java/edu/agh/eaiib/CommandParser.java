@@ -34,15 +34,13 @@ public class CommandParser {
         } else if (input.matches("create [A-Za-z0-9]+")) {
             parseCreate(input);
         } else if (input.matches("buy [A-Za-z0-9]+ in [A-Za-z0-9]+")) {
-
+            parseBuy(input);
         }
     }
 
     private void parseAdd(String input) {
         String tmp = input.replaceFirst("add ", "");
         int amount = Integer.parseInt(tmp.substring(0, tmp.indexOf(" ")));
-//        int amount = Integer.parseInt(input.replaceFirst("add ", "")
-//                .replace(" to [A-Za-z0-9]+", ""));
         tmp = tmp.replaceFirst("[0-9]+ ", "");
         String productName = tmp.substring(0, tmp.indexOf(" "));
         Product product = new Product(productName, amount);
@@ -61,6 +59,21 @@ public class CommandParser {
         String listName = input.replaceFirst("create ", "");
         ProductList list = new ProductList(listName, user.getUsername());
         user.addProductList(list);
+        service.saveUser(user);
+    }
+
+    private void parseBuy(String input) {
+        String tmp = input.replaceFirst("buy ", "");
+        String productName = tmp.substring(0, tmp.indexOf(" "));
+        tmp = tmp.replaceFirst("[A-Za-z0-9]+ in ", "");
+        String listName = tmp;
+        ProductList list = user.findList(listName);
+        if (list == null){
+            System.out.println("List of that name doesn't exist.\n" +
+                    " First you must create list with that name.");
+            return;
+        }
+        user.buyProductFromList(productName, list);
         service.saveUser(user);
     }
 

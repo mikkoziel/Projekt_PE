@@ -41,6 +41,17 @@ public class ProductList {
         return productList;
     }
 
+    public void buyProduct(String productName){
+        if(productList.size() > 0){
+            for(Product product: productList){
+                if(product.getName().equals(productName)){
+                    product.buyProduct();
+                }
+            }
+            System.out.println("No product by this name on this list");
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
