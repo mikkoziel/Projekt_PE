@@ -16,10 +16,6 @@ public class ProductListService {
         this.repository = repository;
     }
 
-    public ProductList getList() {
-        return repository.read();
-    }
-
     public List<ProductList> getLists(User user) {
         return repository.readListsForUser(user);
     }
