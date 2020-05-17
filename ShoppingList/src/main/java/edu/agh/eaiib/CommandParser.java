@@ -30,7 +30,7 @@ public class CommandParser {
             System.out.println("showAll - prints all lists that user created");
         } else if (input.matches("login [A-Za-z0-9]+")) {
             String username = input.split(" ")[1];
-            this.user = new User(username);
+            this.user = service.readUser(username);
             System.out.println(String.format("New user logged in: %s", this.user.getUsername()));
         } else if (input.matches("add [0-9]+ [A-Za-z0-9]+ to [A-Za-z0-9]+")) {
             parseAdd(input);
