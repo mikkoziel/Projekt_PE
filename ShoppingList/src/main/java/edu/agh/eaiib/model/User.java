@@ -16,6 +16,11 @@ public class User {
         this.username = username;
     }
 
+    public User(String username, List<ProductList> productLists) {
+        this.username = username;
+        this.productLists = productLists;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -73,5 +78,23 @@ public class User {
         string.append('}');
 
         return string.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        return productLists != null ? productLists.equals(user.productLists) : user.productLists == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = username != null ? username.hashCode() : 0;
+        result = 31 * result + (productLists != null ? productLists.hashCode() : 0);
+        return result;
     }
 }

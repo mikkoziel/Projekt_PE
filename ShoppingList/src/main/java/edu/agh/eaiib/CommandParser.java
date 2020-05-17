@@ -3,14 +3,15 @@ package edu.agh.eaiib;
 import edu.agh.eaiib.model.Product;
 import edu.agh.eaiib.model.ProductList;
 import edu.agh.eaiib.model.User;
-import edu.agh.eaiib.repository.GsonProductListRepository;
+import edu.agh.eaiib.repository.GsonUserDatabase;
+import edu.agh.eaiib.repository.UserRepositoryImpl;
 import edu.agh.eaiib.service.ProductListService;
 
 import java.util.List;
 
 public class CommandParser {
 
-    static ProductListService service = new ProductListService(new GsonProductListRepository("./database.json"));
+    static ProductListService service = new ProductListService(new UserRepositoryImpl(new GsonUserDatabase("./database.json")));
     User user;
 
     public CommandParser(String username) {

@@ -1,17 +1,14 @@
 package edu.agh.eaiib;
 
-import edu.agh.eaiib.model.Product;
-import edu.agh.eaiib.service.InMemoryProductListRepository;
+import edu.agh.eaiib.repository.UserRepositoryImpl;
+import edu.agh.eaiib.service.InMemoryUserDatabase;
 import edu.agh.eaiib.service.ProductListService;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -23,7 +20,7 @@ public class CommandParserTest {
 
     @Before
     public void setUp() {
-        service = new ProductListService(new InMemoryProductListRepository());
+        service = new ProductListService(new UserRepositoryImpl(new InMemoryUserDatabase()));
         CommandParser.service = service;
         System.setOut(new PrintStream(outContent));
     }

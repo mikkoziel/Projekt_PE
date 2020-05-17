@@ -2,9 +2,8 @@ package edu.agh.eaiib.model;
 
 import org.junit.Test;
 
-import java.util.Random;
-
-import static java.util.Arrays.asList;
+import static edu.agh.eaiib.TestDataSupport.exampleProductList;
+import static edu.agh.eaiib.TestDataSupport.exampleProductList2;
 import static org.junit.Assert.*;
 
 public class UserTest {
@@ -13,7 +12,7 @@ public class UserTest {
     public void shouldFindList() {
         //given
         User user = new User("testUser");
-        ProductList list = exampleList();
+        ProductList list = exampleProductList();
         user.addProductList(list);
 
         //when
@@ -27,7 +26,7 @@ public class UserTest {
     public void shouldReturnNullIfListNotFound() {
         //given
         User user = new User("testUser");
-        ProductList list = exampleList();
+        ProductList list = exampleProductList();
 
         //when
         ProductList found = user.findList(list.getListName());
@@ -40,8 +39,8 @@ public class UserTest {
     public void shouldReplaceList() {
         //given
         User user = new User("testUser");
-        ProductList list = exampleList();
-        ProductList replacement = exampleList2();
+        ProductList list = exampleProductList();
+        ProductList replacement = exampleProductList2();
         user.addProductList(list);
 
         //when
@@ -56,12 +55,12 @@ public class UserTest {
     public void shouldDoNothingWhenReplacingNonExistingList() {
         //given
         User user = new User("testUser");
-        ProductList existingList = exampleList();
-        ProductList replacement = exampleList2();
+        ProductList existingList = exampleProductList();
+        ProductList replacement = exampleProductList2();
         user.addProductList(existingList);
 
         //when
-        user.replaceList(exampleList(), replacement);
+        user.replaceList(exampleProductList(), replacement);
 
         //then
         assertNull(user.findList(replacement.getListName()));
@@ -73,8 +72,8 @@ public class UserTest {
     public void shouldMarkProductAsBought() {
         //given
         User user = new User("testUser");
-        ProductList list = exampleList();
-        ProductList list2 = exampleList();
+        ProductList list = exampleProductList();
+        ProductList list2 = exampleProductList();
         user.addProductList(list);
         user.addProductList(list2);
 
@@ -90,7 +89,7 @@ public class UserTest {
     public void addUserToList() {
         //given
         User user = new User("testUser");
-        ProductList list = exampleList();
+        ProductList list = exampleProductList();
         user.addProductList(list);
 
         //when
@@ -99,23 +98,5 @@ public class UserTest {
 
         //then
         assertTrue(user.findList(list.getListName()).getUsersWithAccess().contains(anotherTestUser));
-    }
-
-    private ProductList exampleList() {
-        return new ProductList(
-                "listName",
-                asList(
-                        new Product("testProductName", new Random().nextInt(), false),
-                        new Product("testProductName2", 6, false)
-                ));
-    }
-
-    private ProductList exampleList2() {
-        return new ProductList(
-                "listName2",
-                asList(
-                        new Product("testProductName", new Random().nextInt(), false),
-                        new Product("testProductName2", 6, false)
-                ));
     }
 }
