@@ -14,9 +14,7 @@ public class CommandParser {
     static ProductListService service = new ProductListService(new UserRepositoryImpl(new GsonUserDatabase("./database.json")));
     User user;
 
-    public CommandParser(String username) {
-        this.user = service.readUser(username);
-    }
+    public CommandParser() { }
 
     public boolean parse(String input) {
         if (input.isEmpty() || input.equals("help")) {
@@ -31,7 +29,7 @@ public class CommandParser {
         } else if (input.matches("login [A-Za-z0-9]+")) {
             String username = input.split(" ")[1];
             this.user = service.readUser(username);
-            System.out.println(String.format("New user logged in: %s", this.user.getUsername()));
+            System.out.println(String.format("Logged in as: %s", this.user.getUsername()));
         } else if (input.matches("add [0-9]+ [A-Za-z0-9]+ to [A-Za-z0-9]+")) {
             parseAdd(input);
         } else if (input.matches("create [A-Za-z0-9]+")) {

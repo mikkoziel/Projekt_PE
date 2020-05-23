@@ -1,5 +1,7 @@
 package edu.agh.eaiib;
 
+import edu.agh.eaiib.fixtures.TestLogin;
+
 import java.util.Scanner;
 
 /**
@@ -12,9 +14,8 @@ public class App {
         System.out.print("Enter your name to login: ");
         String username = scanner.nextLine();
 
-        System.out.println(String.format("%s, welcome to lists.", username));
-
-        CommandParser commandParser = new CommandParser(username);
+        CommandParser commandParser = new CommandParser();
+        commandParser.parse("login " + username);
         while (true) {
             String input = scanner.nextLine();
             boolean shouldContinue = commandParser.parse(input);

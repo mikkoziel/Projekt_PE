@@ -1,0 +1,14 @@
+---
+Test
+---
+!define TEST_SYSTEM {slim}
+| import |
+| edu.agh.eaiib.fixtures |
+
+!| Test login |
+| userName | loginUser? |
+| testuser | true |
+
+!| Test create list |
+| userName | listName | createList? |
+| testuser | testlist | true |
