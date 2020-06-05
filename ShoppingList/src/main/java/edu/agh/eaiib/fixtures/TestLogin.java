@@ -1,5 +1,7 @@
 package edu.agh.eaiib.fixtures;
 import edu.agh.eaiib.CommandParser;
+import edu.agh.eaiib.repository.GsonUserConfiguration;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -12,8 +14,7 @@ public class TestLogin {
     public boolean loginUser(){
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-
-        CommandParser commandParser = new CommandParser();
+        CommandParser commandParser = new CommandParser(GsonUserConfiguration.defaultConfiguration);
         commandParser.parse("login " + userName);
         return out.toString().contains("Logged in as: " + userName);
     }
