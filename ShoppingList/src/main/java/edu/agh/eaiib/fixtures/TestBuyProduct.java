@@ -3,6 +3,7 @@ import edu.agh.eaiib.CommandParser;
 import edu.agh.eaiib.model.Product;
 import edu.agh.eaiib.model.ProductList;
 import edu.agh.eaiib.model.User;
+import edu.agh.eaiib.repository.GsonUserConfiguration;
 import edu.agh.eaiib.repository.GsonUserDatabase;
 import edu.agh.eaiib.repository.UserRepositoryImpl;
 import edu.agh.eaiib.service.ProductListService;
@@ -21,7 +22,7 @@ public class TestBuyProduct {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        CommandParser commandParser = new CommandParser();
+        CommandParser commandParser = new CommandParser(GsonUserConfiguration.defaultConfiguration);
         commandParser.parse("login " + userName);
         commandParser.parse("create " + listName);
         commandParser.parse("add " + numberOfProducts + " " +  nameOfProduct + " to " + listName);
