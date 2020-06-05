@@ -1,5 +1,6 @@
 package edu.agh.eaiib.command;
 
+import edu.agh.eaiib.AppContext;
 import edu.agh.eaiib.model.ProductList;
 
 public class AddUserCommand extends BaseCommand{
@@ -7,7 +8,8 @@ public class AddUserCommand extends BaseCommand{
     private String userName;
     private String listName;
 
-    public AddUserCommand(String input){
+    public AddUserCommand(String input, AppContext appContext){
+        super(appContext);
         String tmp = input.replaceFirst("user add ", "");
         userName = tmp.substring(0, tmp.indexOf(" "));
         tmp = tmp.replaceFirst("[A-Za-z0-9]+ to ", "");

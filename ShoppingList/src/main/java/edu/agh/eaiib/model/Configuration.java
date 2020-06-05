@@ -1,7 +1,5 @@
 package edu.agh.eaiib.model;
 
-import java.util.Objects;
-
 public class Configuration {
 
     private String name;

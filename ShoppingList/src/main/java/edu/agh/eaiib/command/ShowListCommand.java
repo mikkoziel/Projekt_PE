@@ -1,5 +1,6 @@
 package edu.agh.eaiib.command;
 
+import edu.agh.eaiib.AppContext;
 import edu.agh.eaiib.model.Product;
 import edu.agh.eaiib.model.ProductList;
 
@@ -7,7 +8,8 @@ public class ShowListCommand extends BaseCommand {
 
     private String listName;
 
-    public ShowListCommand(String input){
+    public ShowListCommand(String input, AppContext appContext){
+        super(appContext);
         String tmp = input.replaceFirst("show ", "");
         tmp = tmp.replaceFirst("[A-Za-z0-9]+ ", "");
         listName = tmp;
@@ -19,6 +21,10 @@ public class ShowListCommand extends BaseCommand {
         if (list == null) {
             System.out.println("List of that name doesn't exist.\n" +
                     " First you must create list with that name.");
+            return;
+        }
+        if (list.getProductListSize() == 0){
+            System.out.println("No products");
             return;
         }
 

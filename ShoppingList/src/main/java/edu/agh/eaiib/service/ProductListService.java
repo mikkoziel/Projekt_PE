@@ -4,7 +4,6 @@ import edu.agh.eaiib.model.Product;
 import edu.agh.eaiib.model.ProductList;
 import edu.agh.eaiib.model.User;
 import edu.agh.eaiib.repository.UserRepository;
-import edu.agh.eaiib.repository.UserRepositoryImpl;
 
 import java.util.List;
 

@@ -37,6 +37,10 @@ public class ProductList {
         return productList;
     }
 
+    public int getProductListSize(){
+        return productList.size();
+    }
+
     public void buyProduct(String productName) {
         productList = productList.stream().peek(product -> {
             if (product.getName().equals(productName)) {

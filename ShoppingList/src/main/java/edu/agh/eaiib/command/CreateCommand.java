@@ -1,20 +1,27 @@
 package edu.agh.eaiib.command;
 
+import edu.agh.eaiib.AppContext;
 import edu.agh.eaiib.model.ProductList;
-import edu.agh.eaiib.model.User;
 
 public class CreateCommand extends BaseCommand{
 
     private String listName;
 
-    public CreateCommand(String input){
+    public CreateCommand(String input, AppContext appContext){
+        super(appContext);
         listName = input.replaceFirst("create ", "");
     }
 
     @Override
     public void execute() {
-        ProductList list = new ProductList(listName);
-        currentUser.addProductList(list);
-        service.saveUser(currentUser);
+        if(currentUser.findList(listName) == null){
+            ProductList list = new ProductList(listName);
+            currentUser.addProductList(list);
+            service.saveUser(currentUser);
+        }
+        else{
+            System.out.println("List '" + listName + "' already exists. \n" +
+                    "Use command show " + listName + "to show it content.");
+        }
     }
 }

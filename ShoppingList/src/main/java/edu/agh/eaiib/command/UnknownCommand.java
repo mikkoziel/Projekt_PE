@@ -1,6 +1,12 @@
 package edu.agh.eaiib.command;
 
+import edu.agh.eaiib.AppContext;
+
 public class UnknownCommand extends BaseCommand {
+
+    public UnknownCommand(AppContext appContext){
+        super(appContext);
+    }
 
     @Override
     public void execute() {

@@ -1,6 +1,13 @@
 package edu.agh.eaiib.command;
 
+import edu.agh.eaiib.AppContext;
+
 public class HelpCommand extends BaseCommand {
+
+    public HelpCommand(AppContext appContext){
+        super(appContext);
+    }
+
     @Override
     public void execute() {
         System.out.println("Available commands:");

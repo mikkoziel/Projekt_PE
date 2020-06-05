@@ -1,5 +1,6 @@
 package edu.agh.eaiib.command;
 
+import edu.agh.eaiib.AppContext;
 import edu.agh.eaiib.model.Product;
 import edu.agh.eaiib.model.ProductList;
 
@@ -9,7 +10,8 @@ public class AddCommand extends BaseCommand {
     private String productName;
     private String listName;
 
-    public AddCommand(String input){
+    public AddCommand(String input, AppContext appContext){
+        super(appContext);
         String tmp = input.replaceFirst("add ", "");
         amount = Integer.parseInt(tmp.substring(0, tmp.indexOf(" ")));
         tmp = tmp.replaceFirst("[0-9]+ ", "");

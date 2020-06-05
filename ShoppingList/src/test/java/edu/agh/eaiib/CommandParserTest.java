@@ -16,12 +16,10 @@ public class CommandParserTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
-    private ProductListService service;
 
     @Before
     public void setUp() {
-        service = new ProductListService(new UserRepositoryImpl(new InMemoryUserDatabase()));
-        CommandParser.service = service;
+        ProductListService service = new ProductListService(new UserRepositoryImpl(new InMemoryUserDatabase()));
         System.setOut(new PrintStream(outContent));
     }
 

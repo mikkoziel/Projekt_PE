@@ -1,14 +1,15 @@
 package edu.agh.eaiib.command;
 
+import edu.agh.eaiib.AppContext;
 import edu.agh.eaiib.model.ProductList;
-import edu.agh.eaiib.model.User;
 
 public class BuyCommand extends BaseCommand {
 
     private String productName;
     private String listName;
 
-    public BuyCommand(String input){
+    public BuyCommand(String input, AppContext appContext){
+        super(appContext);
         String tmp = input.replaceFirst("buy ", "");
         productName = tmp.substring(0, tmp.indexOf(" "));
         tmp = tmp.replaceFirst("[A-Za-z0-9]+ in ", "");
