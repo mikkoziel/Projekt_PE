@@ -1,7 +1,5 @@
 package edu.agh.eaiib.fixtures;
-
 import edu.agh.eaiib.CommandParser;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
