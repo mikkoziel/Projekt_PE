@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.Optional;
 
 public class TestAddProductToList {
     private String userName;
@@ -30,8 +31,8 @@ public class TestAddProductToList {
         ProductListService service = new ProductListService(new UserRepositoryImpl(new GsonUserDatabase("./database.json")));
         User user = service.readUser(userName);
         List<ProductList> lists = service.getLists(user);
-        Boolean containsList = lists.stream().filter(o -> o.getListName().equals(listName)).findFirst().isPresent();
-        return containsList;
+        ProductList containsList = lists.stream().filter(o -> o.getListName().equals(listName)).findFirst().get();
+        return containsList.toString().contains(nameOfProduct);
     }
 
     public String getUserName() {
