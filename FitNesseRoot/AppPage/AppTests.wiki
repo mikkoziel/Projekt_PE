@@ -1,14 +1,30 @@
 ---
 Test
 ---
-!define TEST_SYSTEM {slim}
-| import |
-| edu.agh.eaiib.fixtures |
-
 !| Test login |
 | userName | loginUser? |
 | testuser | true |
 
 !| Test create list |
 | userName | listName | createList? |
+| testuser | testlist | true |
+
+!| Test show product in list |
+| userName | listName | numberOfProducts | nameOfProduct | checkIfProductIsPresented? |
+| testuser | testlist | 2 | testproduct | true |
+
+!| Test create multiple lists |
+| userName | listName1 | listName2 | addMultipleLists? |
+| testuser | testlist1 | testlist2 | true |
+
+!| Test add product to list |
+| userName | listName | numberOfProducts | nameOfProduct | addProductToList? |
+| testuser | testlist | 1 | testproduct | true |
+
+!| Test buy product |
+| userName | listName | numberOfProducts | nameOfProduct | buyProductFromList? |
+| testuser | testlist | 1 | testproduct | true |
+
+!| Test list owner |
+| userName | listName | addListWithOwner? |
 | testuser | testlist | true |

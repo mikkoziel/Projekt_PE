@@ -24,8 +24,7 @@ public class TestListOwner {
         ProductListService service = new ProductListService(new UserRepositoryImpl(new GsonUserDatabase("./database.json")));
         User user = service.readUser(userName);
         List<ProductList> lists = service.getLists(user);
-        Boolean containsOwner = lists.stream().anyMatch(o -> o.getUsersWithAccess().equals(userName));
-        return containsOwner;
+        return lists.stream().anyMatch(o -> o.getUsersWithAccess().contains(userName));
     }
 
     public String getUserName() {

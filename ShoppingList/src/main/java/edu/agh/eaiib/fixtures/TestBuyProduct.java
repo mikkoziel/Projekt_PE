@@ -26,7 +26,7 @@ public class TestBuyProduct {
         commandParser.parse("login " + userName);
         commandParser.parse("create " + listName);
         commandParser.parse("add " + numberOfProducts + " " +  nameOfProduct + " to " + listName);
-        commandParser.parse("buy" + nameOfProduct + " in " + listName);
+        commandParser.parse("buy " + nameOfProduct + " in " + listName);
         ProductListService service = new ProductListService(new UserRepositoryImpl(new GsonUserDatabase("./database.json")));
         User user = service.readUser(userName);
         List<ProductList> lists = service.getLists(user);
@@ -39,6 +39,14 @@ public class TestBuyProduct {
         }
         return false;
     }
+
+    public String getNameOfProduct() { return nameOfProduct; }
+
+    public void setNameOfProduct(String nameOfProduct) { this.nameOfProduct = nameOfProduct; }
+
+    public String getNumberOfProducts() { return numberOfProducts; }
+
+    public void setNumberOfProducts(String numberOfProducts) { this.numberOfProducts = numberOfProducts; }
 
     public String getUserName() {
         return userName;

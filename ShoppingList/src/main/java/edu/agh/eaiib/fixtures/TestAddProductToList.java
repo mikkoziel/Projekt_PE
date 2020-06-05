@@ -36,6 +36,14 @@ public class TestAddProductToList {
         return containsList.toString().contains(nameOfProduct);
     }
 
+    public String getNameOfProduct() { return nameOfProduct; }
+
+    public void setNameOfProduct(String nameOfProduct) { this.nameOfProduct = nameOfProduct; }
+
+    public String getNumberOfProducts() { return numberOfProducts; }
+
+    public void setNumberOfProducts(String numberOfProducts) { this.numberOfProducts = numberOfProducts; }
+
     public String getUserName() {
         return userName;
     }

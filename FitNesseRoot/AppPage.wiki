@@ -1,3 +1,5 @@
 !path C:\Users\Mikołaj\Documents\Projekt_PE\ShoppingList\target\classes
 !path C:\Users\Mikołaj\.m2\repository\com\google\code\gson\gson\2.8.6\gson-2.8.6.jar
+!define TEST_SYSTEM {slim}
+
 !contents -R2 -g -p -f -h

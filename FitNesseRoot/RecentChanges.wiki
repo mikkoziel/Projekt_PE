@@ -1,4 +1,6 @@
+|AppPage.AppTests||21:50:18 pt., cze 05, 2020|
+|AppPage.SetUp||21:45:18 pt., cze 05, 2020|
+|AppPage||21:45:11 pt., cze 05, 2020|
+|||18:05:48 pt., cze 05, 2020|
 |FrontPage||11:50:36 sob., maj 23, 2020|
-|AppPage.AppTests||11:47:49 sob., maj 23, 2020|
-|AppPage||11:23:51 sob., maj 23, 2020|
 |FrontPage.Tests||10:47:50 sob., maj 23, 2020|

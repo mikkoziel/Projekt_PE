@@ -1,0 +1,9 @@
+---
+Test
+---
+| import |
+| edu.agh.eaiib.fixtures |
+
+!| Test setup |
+| cleanUpBeforeTest? |
+| |

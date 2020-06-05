@@ -3,15 +3,14 @@ package edu.agh.eaiib.fixtures;
 import edu.agh.eaiib.CommandParser;
 import edu.agh.eaiib.repository.GsonUserConfiguration;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 public class TestCreateList {
 
     private String userName;
     private String listName;
 
-    public boolean createList(){
+    public boolean createList() throws FileNotFoundException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
@@ -19,7 +18,8 @@ public class TestCreateList {
         commandParser.parse("login " + userName);
         commandParser.parse("create " + listName);
         commandParser.parse("show " + listName);
-        return out.toString().contains("List of products from " + listName + ":");
+
+        return out.toString().contains("No products");
     }
 
     public String getUserName() {

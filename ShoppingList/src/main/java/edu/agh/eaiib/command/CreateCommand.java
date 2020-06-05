@@ -17,6 +17,7 @@ public class CreateCommand extends BaseCommand{
         if(currentUser.findList(listName) == null){
             ProductList list = new ProductList(listName);
             currentUser.addProductList(list);
+            currentUser.addUserToList(currentUser.getUsername(), list);
             service.saveUser(currentUser);
         }
         else{

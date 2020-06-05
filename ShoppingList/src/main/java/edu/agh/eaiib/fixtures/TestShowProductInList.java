@@ -8,8 +8,7 @@ import edu.agh.eaiib.repository.GsonUserDatabase;
 import edu.agh.eaiib.repository.UserRepositoryImpl;
 import edu.agh.eaiib.service.ProductListService;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.List;
 
 public class TestShowProductInList {
@@ -18,7 +17,7 @@ public class TestShowProductInList {
     private String numberOfProducts;
     private String nameOfProduct;
 
-    public boolean checkIfProductIsPresented() {
+    public boolean checkIfProductIsPresented() throws FileNotFoundException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
@@ -33,7 +32,7 @@ public class TestShowProductInList {
         List<Product> selectedProductList = lists.stream().filter(o -> o.getListName().equals(listName)).findFirst().get().getProductList();
 
         String output;
-        output = "List of products from " + listName + ":";
+        output = "List of products from " + listName + ":\r\n";
         System.out.println();
         for (Product product : selectedProductList) {
             output += product.getAmount() + " " + product.getName() + " bought: " + product.isBought();
@@ -41,6 +40,14 @@ public class TestShowProductInList {
 
         return out.toString().contains(output);
     }
+
+    public String getNumberOfProducts() { return numberOfProducts; }
+
+    public void setNumberOfProducts(String numberOfProducts) { this.numberOfProducts = numberOfProducts; }
+
+    public String getNameOfProduct() { return nameOfProduct; }
+
+    public void setNameOfProduct(String nameOfProduct) { this.nameOfProduct = nameOfProduct; }
 
     public String getUserName() {
         return userName;
