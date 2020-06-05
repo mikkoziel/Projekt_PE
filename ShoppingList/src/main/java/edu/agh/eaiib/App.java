@@ -4,9 +4,6 @@ import edu.agh.eaiib.model.Configuration;
 import edu.agh.eaiib.repository.GsonUserConfiguration;
 import java.util.Scanner;
 
-/**
- * Hello world!
- */
 public class App {
 
     static GsonUserConfiguration configuration = new GsonUserConfiguration("./configuration.json");

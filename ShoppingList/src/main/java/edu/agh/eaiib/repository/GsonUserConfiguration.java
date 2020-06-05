@@ -26,7 +26,6 @@ public class GsonUserConfiguration implements UserConfiguration {
             Type type = new TypeToken<Configuration>() {}.getType();
             gson.toJson(configuration, type, writer);
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -36,7 +35,6 @@ public class GsonUserConfiguration implements UserConfiguration {
             Configuration config = gson.fromJson(reader, new TypeToken<Configuration>() {}.getType());
             return config == null ? defaultConfiguration : config;
         } catch (IOException e) {
-            e.printStackTrace();
             return defaultConfiguration;
         }
     }
